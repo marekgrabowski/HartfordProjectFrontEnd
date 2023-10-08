@@ -4,11 +4,11 @@ Frontend Website for CS 410 Software Development Project. This front end is a st
 ## Setup Guide for Group
 NPM will be used for all dependencies, please ensure you have Nodejs installed.
 
-When cloning the project run "npm install" to pull all dependencies.
+When cloning the project run ```npm install``` to pull all dependencies.
 
 Astro framework includes a development web server, similar to the web server included in PyCharm & other ide's but supports the page router & all astro features without building and deploying
 
-To start a development server; in the home directory of your Astro project run "npm run dev".
+To start a development server; in the home directory of your Astro project run ```npm run dev```.
 
 This repo is configured with a GitHub action that automatically builds & pushes any change made in the main branch to AWS automatically, only push working builds to main.
 
