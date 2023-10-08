@@ -1,7 +1,7 @@
 # HartfordProjectFrontEnd
 Frontend Website for CS 410 Software Development Project. This front end is a static site built using SSG Astro, this is used as the UI for a co-op project with The Hartford Insurance
 
-#Setup Guide for Group
+## Setup Guide for Group
 NPM will be used for all dependencies, please ensure you have Nodejs installed.
 
 When cloning the project run "npm install" to pull all dependencies.
@@ -18,4 +18,5 @@ This also allows Astro to be fully compatible with many npm libraries including 
 Astro as a framework will take all of your code & site layout and build it for you. It tries to limit any front-end js in order to improve performance by trying to run as much javascript as possible on the server.
 
 Documentation for AstroJS can be found [here](https://docs.astro.build/en/concepts/why-astro/)
+
 My Portfolio is built on Astro [marekgrabowski.net](https://marekgrabowski.net) it can be found at this public repo [here](https://github.com/marekgrabowski/marekgrabowski).
