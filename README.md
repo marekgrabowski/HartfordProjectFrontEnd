@@ -8,7 +8,7 @@ When cloning the project run ```npm install``` to install all dependencies.
 
 Astro framework includes a development web server, similar to the web server included in PyCharm & other ide's but supports the page router & all astro features without building and deploying
 
-To start a development server; in the home directory of your Astro project run ```npm run dev```.
+To start a development server; in the home directory of your Astro project run ```npm run dev```. This will host the site at [localhost:3000](localhost:3000)
 
 This repo is configured with a GitHub action that automatically builds & pushes any change made in the main branch to AWS automatically, only push working builds to main.
 
