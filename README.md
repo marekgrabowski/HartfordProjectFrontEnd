@@ -17,11 +17,15 @@ This repo is configured with a GitHub action that automatically builds & pushes 
 Astro is an SSG, built using Nodejs. You can look at it as a page builder/designer similar to products like Wix or WordPress.
 
 This means we will be able to design parts of our page as components, i.e cards, containers, and sections can have their own tags which can create div or section blocks with premade styling & content, and layouts.
+
 The [Layout](https://docs.astro.build/en/core-concepts/layouts/) will allow us to create components visible on all pages (header/navbar & footer), so no copy-pasting will be needed.
+
 [Components](https://docs.astro.build/en/core-concepts/astro-components/) will be made for things like our cards modals, and tables as these will be used throughout the site.
 
 The major difference is that all design & config are done in code, allowing for large flexibility/usability.
+
 This also allows Astro to be fully compatible with many npm libraries including React, Svelte, Bootstrap, Tailwind, dozens of component libraries, sitemap generators, & media optimizers
+
 Astro as a framework will take all of your code & site layout and build it for you. It tries to limit any front-end js in order to improve performance by trying to run as much javascript as possible on the server.
 
 Documentation for AstroJS can be found [here](https://docs.astro.build/en/concepts/why-astro/)
