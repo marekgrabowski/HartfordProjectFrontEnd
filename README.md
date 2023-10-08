@@ -12,6 +12,8 @@ To start a development server; in the home directory of your Astro project run `
 
 This repo is configured with a GitHub action that automatically builds & pushes any change made in the main branch to AWS automatically, only push working builds to main.
 
+If Using VsCode install the Astro & TailwindCSS IntelliSense for autocomplete & highlighting.
+
 ## What is Astro & Documentation
 
 Astro is an SSG, built using Nodejs. You can look at it as a page builder/designer similar to products like Wix or WordPress.
