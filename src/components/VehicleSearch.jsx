@@ -55,11 +55,11 @@ const Search = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col text-center border-2 border-gray-200 p-12">
+      <div className="flex flex-col text-center border border-gray-300 py-6 px-10">
         <form>
-          <div>
-            <label>Select Your Car's Make:</label>
-            <select className="border-2" onChange={handleMakeChange}>
+          <div class="py-4">
+            <label class="pr-2" >Select Your Car's Make:</label>
+            <select className="border border-gray-300" onChange={handleMakeChange}>
               <option value="">Select Make</option>
               {vehicleList.map((vehicle) => (
                 <option key={vehicle.id} value={vehicle.make}>
@@ -68,9 +68,9 @@ const Search = () => {
               ))}
             </select>
           </div>
-          <div>
-            <label>Select Your Car's Model:</label>
-            <select className="border-2" onChange={handleModelChange}>
+          <div class="py-4">
+            <label class="pr-2" >Select Your Car's Model:</label>
+            <select className="border border-gray-300" onChange={handleModelChange}>
               <option value="">Select Model</option>
               {selectedModels.map((model, index) => (
                 <option key={index} value={model}>
@@ -79,9 +79,9 @@ const Search = () => {
               ))}
             </select>
           </div>
-          <div>
-            <label>Select Your Car's Year:</label>
-            <select className="border-2" onChange={handleModelChange}>
+          <div class="py-4">
+            <label class="pr-2">Select Your Car's Year:</label>
+            <select className="border border-gray-300" onChange={handleModelChange}>
               <option value="">Select Year</option>
               {selectedYears.map((year, index) => (
                 <option key={index} value={year}>
