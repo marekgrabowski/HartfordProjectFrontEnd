@@ -11,4 +11,8 @@ export const navItems = [
         route: "/viewall",
         text: "View All Vehicles",
     },
+    {
+        route: "/account",
+        text: "My Account",
+    },
 ];
