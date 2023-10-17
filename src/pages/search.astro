@@ -18,22 +18,8 @@ const data = await response.json();
 // Create list of Makes to populate drop down
 const vehicleList: Vehicle[] = JSON.parse(data.body);
 const makes: string[] = vehicleList.map((vehicle) => vehicle.make);
+const models: string[] = vehicleList.map((vehicle) => vehicle.model);
 
-const uniqueMakes: string[] = Array.from(new Set(makes));
-
-// Function to filter models based on selected make
-function filterModels(selectedMake: string): string[] {
-  const filteredModels = vehicleList
-    .filter((vehicle) => vehicle.make === selectedMake)
-    .map((vehicle) => vehicle.model);
-  return filteredModels;
-}
-
-// Example: Select a make
-const selectedMake = "Toyota"; // Replace with the selected make
-
-// Get models based on the selected make
-const selectedModels: string[] = filterModels(selectedMake);
 
 
 
@@ -64,7 +50,7 @@ const selectedModels: string[] = filterModels(selectedMake);
 			<label class="">Select Your Car's Model:</label>
 			<select class="border-2" onchange="">
 				{
-				  model.map((model) => (
+				  models.map((model) => (
 					<option value={model} class="">
 					  {model}
 					</option>
