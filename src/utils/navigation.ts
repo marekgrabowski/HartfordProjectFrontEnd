@@ -1,3 +1,5 @@
+// Author: Marek Grabowski
+
 export const navItems = [
     {
         route: "/",
