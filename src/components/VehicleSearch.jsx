@@ -16,7 +16,7 @@ const Search = () => {
       try {
         const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles");
         const data = await response.json();
-        const vehicleList = JSON.parse(data.body);
+        const vehicleList = data.body;
         setVehicleList(vehicleList);
       } catch (error) {
         console.error('Error fetching data:', error);
