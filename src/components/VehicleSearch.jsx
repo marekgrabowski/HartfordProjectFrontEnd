@@ -41,6 +41,7 @@ const Search = () => {
     
     // Set Options for Make, clear others
     setModelList(modelsForMake);
+    setSelectedModel('');
     setSelectedYear('');
     setYearsList([]);
   };
