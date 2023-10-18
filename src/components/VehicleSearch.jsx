@@ -11,6 +11,12 @@ const Search = () => {
   const [selectedYear, setSelectedYear] = useState('');
   const [yearsList, setYearsList] = useState([]);
 
+  const [showNotification, setShowNotification] = useState(false);
+
+  const handleNotificationClose = () => {
+    setShowNotification(false);
+  };
+
   // Fetch data from the API
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +39,10 @@ const Search = () => {
     const selectedMake = e.target.value;
     setSelectedMake(selectedMake);
 
+    //Clear Model Input
+    setSelectedModel('');
+    setSelectedYear('');
+
     // Filter unique models for the selected make
     const modelsForMake = [...new Set(vehicleList
       .filter((vehicle) => vehicle.make === selectedMake)
@@ -41,7 +51,6 @@ const Search = () => {
     
     // Set Options for Make, clear others
     setModelList(modelsForMake);
-    setSelectedModel('');
     setSelectedYear('');
     setYearsList([]);
   };
@@ -67,19 +76,24 @@ const Search = () => {
   };
   
   const handleSubmit = () => {
-  const url = `/vehicle/${selectedMake}-${selectedModel}-${selectedYear}`;
-  // Redirect to the constructed URL
-  window.location.href = url;
-};
+    if (selectedMake && selectedModel && selectedYear) {
+      const url = `/vehicle/${selectedMake}-${selectedModel}-${selectedYear}`;
+      // Redirect to the constructed URL
+      window.location.href = url;
+    } else {
+      // Show the notification box when form validation fails
+      setShowNotification(true);
+    }
+  };
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col text-center border border-gray-300 py-6 px-10">
+      <div className="flex flex-col text-center border border-gray-300 py-6 px-10 w-1/3">
         <form>
           <div className="py-4">
             <label className="pr-2">Select Your Car's Make:</label>
-            <select className="border border-gray-300" onChange={handleMakeChange}>
-              <option value="">Select Make</option>
+            <select className="border border-gray-300 w-1/3" onChange={handleMakeChange}>
+              <option value=""></option>
               {[...new Set(vehicleList.map((vehicle) => vehicle.make))].map((make, index) => (
                 <option key={index} value={make}>
                   {make}
@@ -89,8 +103,8 @@ const Search = () => {
           </div>
           <div className="py-4">
             <label className="pr-2">Select Your Car's Model:</label>
-            <select className="border border-gray-300" onChange={handleModelChange}>
-              <option value="">Select Model</option>
+            <select className="border border-gray-300 w-1/3" onChange={handleModelChange}>
+              <option value=""></option>
               {modelList.map((model, index) => (
                 <option key={index} value={model}>
                   {model}
@@ -100,8 +114,8 @@ const Search = () => {
           </div>
           <div className="py-4">
             <label className="pr-2">Select Your Car's Year:</label>
-            <select className="border border-gray-300" onChange={handleYearChange}>
-              <option value="">Select Year</option>
+            <select className="border border-gray-300 w-1/3" onChange={handleYearChange}>
+              <option value=""></option>
               {yearsList.map((year, index) => (
                 <option key={index} value={year}>
                   {year}
@@ -109,8 +123,18 @@ const Search = () => {
               ))}
             </select>
           </div>
-          <button type="button" onClick={handleSubmit}>Submit</button>
+          <button type="button" onClick={handleSubmit} className="bg-green-500 rounded-md px-4 py-2 text-white hover:bg-green-600">
+            Submit
+          </button>
         </form>
+        {showNotification && (
+        <div className="mt-2 p-4 bg-red-500 text-white flex items-center relative">
+          <p>Please select Make, Model, and Year.</p>
+          <button onClick={handleNotificationClose} className="cursor-pointer absolute top-0 right-1 text-xl">
+            x
+          </button>
+        </div>
+      )}
       </div>
     </div>
   );
