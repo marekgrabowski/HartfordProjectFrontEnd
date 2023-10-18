@@ -56,7 +56,7 @@ const Search = () => {
       .filter((vehicle) => vehicle.make === selectedMake && vehicle.model === selectedModel)
       .map((vehicle) => vehicle.year)
     )];
-    
+    setSelectedYear('');
     setYearsList(yearsForMakeAndModel);
   };
 
