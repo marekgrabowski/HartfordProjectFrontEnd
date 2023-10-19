@@ -28,10 +28,50 @@ const { year } = Astro.props;
 ---
 
 <Layout title="TWW Hartford Project.">
-	<main>
-		<ContainerLarge>
-			<h1 class="text-center text-3xl font-medium p-4">{year}&nbsp;{make}&nbsp;{model}</h1>
-            <p class="text-center p-4"></p>
-		</ContainerLarge>
-	</main>
+  <main>
+    <ContainerLarge>
+      <h1 class="text-center text-3xl font-medium p-4">{year}&nbsp;{make}&nbsp;{model}</h1>
+      <div class="flex flex-col sm:flex-row gap-20 p-8">
+        <div class="sm:w-1/2">
+          <div class="text-2xl font-bold mb-4 ml-10">Vehicle Information</div>
+
+          <!-- Vehicle Information -->
+          <div class="grid grid-cols-4 gap-2">
+            <div class="col-span-1 flex items-center justify-end">
+              <p class="font-semibold mr-2">Make:</p>
+            </div>
+            <div class="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
+              <p class="pl-2">{make}</p>
+            </div>
+            <div class="col-span-1 flex items-center justify-end">
+              <p class="font-semibold mr-2">Model:</p>
+            </div>
+            <div class="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
+              <p class="pl-2">{model}</p>
+            </div>
+            <div class="col-span-1 flex items-center justify-end">
+              <p class="font-semibold mr-2">Year:</p>
+            </div>
+            <div class="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
+              <p class="pl-2">{year}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sm:w-1/2">
+          <div class="text-2xl font-bold my-4 ml-10">Recall Information</div>
+
+          <!-- Recall Information -->
+          <div class="grid grid-cols-4 gap-2">
+            <div class="col-span-1 flex items-center justify-end">
+              <p class="font-semibold mr-2">2023-10-18</p>
+            </div>
+            <div class="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
+              <p class="pl-2 w-max">Faulty airbags</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ContainerLarge>
+  </main>
 </Layout>
