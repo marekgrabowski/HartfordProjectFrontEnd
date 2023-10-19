@@ -3,7 +3,7 @@
 
 import Layout from "../layouts/Layout.astro";
 import ContainerLarge from "../components/ContainerLarge.astro";
-import VehicleSearch from "../components/VehicleSearch.jsx"
+import VehicleForm from "../components/VehicleForm.jsx"
 
 ---
 
@@ -15,7 +15,7 @@ import VehicleSearch from "../components/VehicleSearch.jsx"
         Select a Make Model and Year from the drop downs to lookup a vechicle
       </p>
       <!-- Client Loaded "Dynamic Island" Allows runtime JS -->
-      <VehicleSearch client:load />
+      <VehicleForm client:load />
     </ContainerLarge>
   </main>
 </Layout> 
