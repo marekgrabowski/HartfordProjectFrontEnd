@@ -1,3 +1,5 @@
+// Author: Marek Grabowski
+
 export const navItems = [
     {
         route: "/",
@@ -10,5 +12,9 @@ export const navItems = [
     {
         route: "/viewall",
         text: "View All Vehicles",
+    },
+    {
+        route: "/account",
+        text: "My Account",
     },
 ];
