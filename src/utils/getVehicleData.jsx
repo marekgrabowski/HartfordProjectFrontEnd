@@ -1,6 +1,16 @@
 async function getVehicleData() {
     try {
-      const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles");
+      const headers = {
+        'Authorization': 'allow',
+        'Content-Type': 'application/json',
+      };
+
+      const requestOptions = {
+        method: 'GET',
+        headers: headers,
+      };
+
+      const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles", requestOptions);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }

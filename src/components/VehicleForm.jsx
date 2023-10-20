@@ -13,7 +13,17 @@ const VehicleForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles");
+        const headers = {
+          'Authorization': 'allow',
+          'Content-Type': 'application/json',
+        };
+  
+        const requestOptions = {
+          method: 'GET',
+          headers: headers,
+        };
+  
+        const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles", requestOptions);
         const data = await response.json();
         setVehicleList(data.body);
 
