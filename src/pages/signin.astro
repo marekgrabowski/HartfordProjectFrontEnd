@@ -1,0 +1,143 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContainerLarge from "../components/ContainerLarge.astro";
+---
+
+<Layout title="TWW Hartford Project.">
+	<main>
+		<ContainerLarge>
+			<h1 class="text-center text-3xl font-medium p-4">SIGN IN</h1>
+			
+		<form class="form-container">
+			<div class="signin-box">
+				<div class="row">
+					<div class="col-25">
+						<label for="email">Email</label>
+					</div>
+					<div class="col-75">
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Enter your email"
+							required
+						/>
+					</div>
+			</div>
+				<div class="row">
+					<div class="col-25">
+						<label for="password">Password</label>
+					</div>
+					<div class="col-75">
+						<input type="password" name="password" id="password" />
+					</div>
+			</div>
+				<div class="row">
+					<input type="submit" value="Submit" />
+				</div>
+				<p class="last">Not have an account? &nbsp;<a href="/search" style="text-decoration: underline; color: blue;">Sign Up Here!</a></p>
+			</div>
+			</form>
+		</ContainerLarge>
+	</main>
+</Layout>
+
+<style>
+
+h1{
+	padding-bottom: 20px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.last{
+	margin-top: 10px;
+}
+
+.row {
+display: flex;
+justify-content: center;
+}
+
+
+.form-container {
+max-width: 700px;
+margin: 0 auto;
+}
+
+
+	input[type="email"],
+	input[type="password"],
+	select,
+	textarea {
+		width: 70%;
+		padding: 7px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		resize: vertical;
+	}
+
+	label {
+		display: inline-block;
+	}
+
+	input[type="submit"] {
+		background-color: #217ce5;
+		color: white;
+		padding: 7px 20px;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-top: 12px;
+	}
+
+	input[type="submit"]:hover {
+		background-color: #1109f9;
+	}
+
+	.col-25 {
+		float: left;
+		width: 25%;
+		margin-top: 6px;
+	}
+
+	.col-75 {
+		width: 75%;
+		margin-top: 6px;
+	}
+
+	.signin-box{
+		width: 360px;
+		height: 200px;
+		margin: auto;
+		background-color:rgb(229, 225, 225);
+		display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+		border-radius: 4px;
+	}
+  
+
+	/* Clear floats after the columns */
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 600px) {
+		.col-25,
+		.col-75,
+		{
+			width: 100%;
+			margin-top: 0;
+		}
+	}
+
+	.col-25 label, .last {
+    padding-left: 16px;
+  }
+
+</style>
