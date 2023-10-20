@@ -3,19 +3,19 @@
 
 import Layout from "../layouts/Layout.astro";
 import ContainerLarge from "../components/ContainerLarge.astro";
-import VehicleForm from "../components/VehicleForm.jsx"
-
+import VehicleForm from "../components/VehicleForm.jsx";
 ---
 
 <Layout title="TWW Hartford Project.">
-  <main>
-    <ContainerLarge>
-      <h1 class="text-center text-3xl font-medium p-4">Vehicle Search</h1>
-      <p class="text-center pb-5">
-        Select a Make Model and Year from the drop downs to lookup a vechicle
-      </p>
-      <!-- Client Loaded "Dynamic Island" Allows runtime JS -->
-      <VehicleForm client:load />
-    </ContainerLarge>
-  </main>
-</Layout> 
+	<main>
+		<ContainerLarge>
+			<h1 class="text-center text-3xl font-medium p-4">Vehicle Search</h1>
+			<p class="text-center pb-5">
+				Select a Make Model and Year from the drop downs to lookup a
+				vechicle
+			</p>
+			<!-- Client Loaded "Dynamic Island" Allows runtime JS -->
+			<VehicleForm client:load />
+		</ContainerLarge>
+	</main>
+</Layout>
