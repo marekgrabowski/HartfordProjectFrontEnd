@@ -41,7 +41,7 @@ const RecallTable = ({ make, model, year }) => {
             <><div key={index} className="col-span-1 flex items-center justify-end">
               <p className="mr-2">{result.ReportReceivedDate}:</p>
             </div><div className="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
-                <p className="pl-2 w-max">{result.Component}</p>
+                <p className="pl-2 break-normal">{result.Component}</p>
               </div></>
           ))
         )
