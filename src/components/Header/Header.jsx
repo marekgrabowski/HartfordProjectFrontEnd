@@ -2,7 +2,6 @@ import NavMenu from "./Navbar.jsx";
 import { useState } from "react";
 import Sidebar from "./Sidebar.jsx";
 
-
 const Header = () => {
   const [open, setOpen] = useState(false);
 
@@ -10,7 +9,7 @@ const Header = () => {
     <header className=" bg-blue-500 shadow-md">
       <div className="flex p-2 gap-8 justify-between sm:justify-center px-8">
         <div className="flex items-center">
-          <img className="w-14" src="src/assets/The_Hartford_Financial_Services_Group_logo.svg" alt="Hartford Logo" />
+          <img className="w-14" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Hartford_Financial_Services_Group_logo.svg/1200px-The_Hartford_Financial_Services_Group_logo.svg.png" alt="Hartford Logo" />
         </div>
         <div className="flex items-center z-20">
           <NavMenu />

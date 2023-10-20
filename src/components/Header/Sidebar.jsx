@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { navItems } from "../../utils/navigation";
 
 const Sidebar = ({ open = false, setOpen }) => {
-    const sidebarClasses = `fixed inset-y-0 right-0 w-full bg-gray-900 transform transition-transform ease-in-out duration-300 ${open ? "translate-x-0" : "translate-x-full"}`;
+    const sidebarClasses = `z-50 fixed inset-y-0 right-0 w-full bg-gray-900 transform transition-transform ease-in-out duration-300 ${open ? "translate-x-0" : "translate-x-full"}`;
     return (
         <div className={sidebarClasses}>
             <button
