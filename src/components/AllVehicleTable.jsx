@@ -90,7 +90,7 @@ const AllVehicleTable = () => {
                         <tr
                             key={index}
                             onClick={() => redirectToVehicle(vehicle.make, vehicle.model, vehicle.year)}
-                            className="relative groupcursor-pointer"
+                            className="relative group hover:cursor-pointer"
                             role="link"
                             aria-label={`View details for ${vehicle.make} ${vehicle.model} ${vehicle.year}`}
                         >
