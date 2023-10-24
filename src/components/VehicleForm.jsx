@@ -4,7 +4,7 @@ import Select from 'react-select';
 
 
 export default function VehicleForm({ makes }) {
-  const makeOptions = makes.map((make) => ({
+  makes = makes.map((make) => ({
     value: make.make_name,
     label: make.make_name,
   }));
@@ -75,11 +75,11 @@ export default function VehicleForm({ makes }) {
 
         const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetYearsForMakeAndModel?make=${selectedMake.value}&model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
-        const YearOptions = data.body.map((year) => ({
+        const yearOptions = data.body.map((year) => ({
         value: year.year_name,
         label: year.year_name,
       }));
-      setYears(modelOptions);
+      setYears(yearOptions);
       } catch (error) {
         console.error('Error fetching years:', error);
       }
@@ -113,7 +113,7 @@ export default function VehicleForm({ makes }) {
   return (
     <div className="flex flex-col gap-2 p-8 items-center grow ">
       <Select
-        options={makeOptions}
+        options={makes}
         value={selectedMake}
         onChange={handleMakeChange}
         placeholder="Select Make"
