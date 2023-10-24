@@ -1,38 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import Select from 'react-select';
 
-const VehicleForm = () => {
-  const [makes, setMakes] = useState([]);
+
+export default function VehicleForm({ makes }) {
+  const makeOptions = makes.map((make) => ({
+    value: make.make_name,
+    label: make.make_name,
+  }));
+  // Pass in fetch makes list (Done in document /search/)
+  // Declare other consts w/ useState to safely update
+  // Lists
   const [models, setModels] = useState([]);
   const [years, setYears] = useState([]);
+
+  // Active Options
   const [selectedMake, setSelectedMake] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
 
+
   useEffect(() => {
-    const fetchMakes = async () => {
-      try {
-        const headers = {
-          'Authorization': 'allow',
-          'Content-Type': 'application/json',
-        };
-
-        const requestOptions = {
-          method: 'GET',
-          headers: headers,
-        };
-
-        const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles/GetAllMakes", requestOptions);
-        const data = await response.json();
-        setMakes(data.body);
-      } catch (error) {
-        console.error('Error fetching makes:', error);
-      }
-    };
-
-    fetchMakes();
+    if (selectedMake) {
+      fetchModels();
+    }
   }, [selectedMake]);
-  
+
+  useEffect(() => {
+    if (selectedModel) {
+      fetchYears();
+    }
+  }, [selectedModel]);
+
   const fetchModels = async () => {
     if (selectedMake) {
       try {
@@ -46,10 +44,15 @@ const VehicleForm = () => {
           headers: headers,
         };
 
-        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles/GetModelsForMake?make=${selectedMake.value}`, requestOptions);
+        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelsForMake?make=${selectedMake.value}`, requestOptions);
         const data = await response.json();
-        console.log(data)
-        setModels(data.body);
+
+        const modelOptions = data.body.map((model) => ({
+          value: model.model_name,
+          label: model.model_name,
+        }));
+
+        setModels(modelOptions);
       } catch (error) {
         console.error('Error fetching models:', error);
       }
@@ -69,45 +72,26 @@ const VehicleForm = () => {
           headers: headers,
         };
 
-        const response = await fetch(`YOUR_YEARS_API_ENDPOINT?make=${selectedMake.value}&model=${selectedModel.value}`, requestOptions);
+        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetYearsForMakeAndModel?make=${selectedMake.value}&model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
-        setYears(data.body);
+        const YearOptions = data.body.map((year) => ({
+        value: year.year_name,
+        label: year.year_name,
+      }));
+      setYears(modelOptions);
       } catch (error) {
         console.error('Error fetching years:', error);
       }
     }
   };
 
-  const makeOptions = makes.map(make => ({
-    value: make.make_id,
-    label: make.make_name,
-  }));
-
-  const modelOptions = selectedMake
-    ? models.map(model => ({
-        value: model.model_id,
-        label: model.model_name,
-      }))
-    : [];
-
-  const yearOptions = selectedModel
-    ? years.map(year => ({
-        value: year.year_name,
-        label: year.year_name,
-      }))
-    : [];
-
   const handleMakeChange = (selectedOption) => {
     setSelectedMake(selectedOption);
     setSelectedModel(null);
-    setSelectedYear(null);
-    fetchModels();
   };
-
+  
   const handleModelChange = (selectedOption) => {
     setSelectedModel(selectedOption);
-    setSelectedYear(null);
-    fetchYears();
   };
 
   const handleYearChange = (selectedOption) => {
@@ -117,18 +101,16 @@ const VehicleForm = () => {
   const handleSubmit = () => {
     if (selectedMake && selectedModel && selectedYear) {
       const url = `/vehicle/${selectedMake.value}-${selectedModel.value}-${selectedYear.value}`;
-      // Redirect to the constructed URL
       window.location.href = url;
     } else {
-      // Show the notification box when form validation fails
-      console.log("redirect failure");
+      console.log("Redirection Error");
     }
-  };
+  }
 
   const isButtonVisible = selectedMake && selectedModel && selectedYear;
 
   return (
-    <div className="flex flex-col gap-2 p-8 items-center grow">
+    <div className="flex flex-col gap-2 p-8 items-center grow ">
       <Select
         options={makeOptions}
         value={selectedMake}
@@ -137,7 +119,7 @@ const VehicleForm = () => {
         className="w-full lg:w-1/2"
       />
       <Select
-        options={modelOptions}
+        options={models}
         value={selectedModel}
         onChange={handleModelChange}
         placeholder="Select Model"
@@ -145,7 +127,7 @@ const VehicleForm = () => {
         className="w-full lg:w-1/2"
       />
       <Select
-        options={yearOptions}
+        options={years}
         value={selectedYear}
         onChange={handleYearChange}
         placeholder="Select Year"
@@ -154,14 +136,12 @@ const VehicleForm = () => {
       />
       {isButtonVisible && (
         <button
-          className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-1/2 lg:w-1/4"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+    className={`bg-blue-500 text-white font-bold py-2 px-4 rounded w-1/2 lg:w-1/4 opacity-0}`}
+    onClick={handleSubmit}
+  >
+    Submit
+  </button>
       )}
     </div>
   );
 };
-
-export default VehicleForm;

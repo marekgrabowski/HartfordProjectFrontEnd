@@ -4,6 +4,23 @@
 import Layout from "../layouts/Layout.astro";
 import ContainerLarge from "../components/ContainerLarge.astro";
 import VehicleForm from "../components/VehicleForm.jsx";
+
+const headers = {
+	Authorization: "allow",
+	"Content-Type": "application/json",
+};
+
+const requestOptions = {
+	method: "GET",
+	headers: headers,
+};
+
+const makes = await fetch(
+	"https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetAllMakes",
+	requestOptions,
+)
+	.then((res) => res.json())
+	.then((data) => data.body);
 ---
 
 <Layout title="TWW Hartford Project.">
@@ -15,7 +32,7 @@ import VehicleForm from "../components/VehicleForm.jsx";
 				vechicle
 			</p>
 			<!-- Client Loaded "Dynamic Island" Allows runtime JS -->
-			<VehicleForm client:load />
+			<VehicleForm makes={makes} client:only="react" />
 		</ContainerLarge>
 	</main>
 </Layout>

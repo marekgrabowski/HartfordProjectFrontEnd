@@ -92,7 +92,7 @@ const { year } = Astro.props;
           </div>
 
           <!-- Recall Information -->
-          <RecallTable make={make} model={model} year={year} client:load />
+          <RecallTable make={make} model={model} year={year} client:only="react" />
         </div>
       </div>
     </ContainerLarge>
