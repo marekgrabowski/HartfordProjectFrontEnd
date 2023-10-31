@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ export default function Signup() {
     password: "",
     passwordconfirmation: "",
   });
+  const ref = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,7 +79,7 @@ export default function Signup() {
                 id="state"
                 name="state"
                 type="text"
-                autoComplete="given-name"
+                autoComplete="state"
                 placeholder="State"
                 required
                 onChange={handleChange}
@@ -87,11 +88,22 @@ export default function Signup() {
               <input
                 id="date_of_birth"
                 name="date_of_birth"
-                type="date"
-                autoComplete="family-name"
-                placeholder="Date of Birth"
+                type="text"
+                autoComplete="birthday"
+                ref={ref}
                 required
+                placeholder="Date of Birth"
                 onChange={handleChange}
+                onFocus={() => {
+                  if (ref.current) {
+                    ref.current.type = "date"
+                  }
+                }}
+                onBlur={() => {
+                  if (ref.current) {
+                    ref.current.type = formData.date_of_birth ? "date" : "text"
+                  }
+                }}
                 className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
