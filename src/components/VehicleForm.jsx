@@ -73,7 +73,7 @@ export default function VehicleForm({ makes }) {
           headers: headers,
         };
 
-        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetYearsForMakeAndModel?model=${selectedModel.value}`, requestOptions);
+        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelYearsForModel?model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
         const yearOptions = data.body.map((year) => ({
         value: year.year,
