@@ -1,7 +1,7 @@
 describe('test 1', ()=>{
     it('visits the site', () => {
         cy.visit('/').wait(1000)
-        cy.url().should('contain','http://localhost:4321/')
+        cy.url().should('contain','http://tww-website.s3-website-us-east-1.amazonaws.com/')
     })
     it('Verifies Search Button goes to Search Page', () =>{
         cy.GoToSearchButton().click()
@@ -9,7 +9,7 @@ describe('test 1', ()=>{
     })
     it('Verifies Ability to navigate to Home', ()=>{
         cy.HomeNav().click()
-        cy.url().should('eq','http://localhost:4321/')
+        cy.url().should('eq','http://tww-website.s3-website-us-east-1.amazonaws.com/')
     })
     it('verifies that the Make, Model, and Year dropdowns are enabled in the correct order', () =>{
         cy.SearchNav().click()
