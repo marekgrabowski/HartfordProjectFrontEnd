@@ -4,6 +4,8 @@
 import Layout from "../../layouts/Layout.astro";
 import ContainerLarge from "../../components/ContainerLarge.astro";
 import getVehicleData from "../../utils/getVehicleData";
+import RecallTable from "../../components/RecallTable";
+import RecallNumber from "../../components/RecallNumber";
 
 export async function getStaticPaths() {
   const data = await getVehicleData();
@@ -28,7 +30,9 @@ const { year } = Astro.props;
 <Layout title="TWW Hartford Project.">
   <main>
     <ContainerLarge>
-      <div class="flex flex-col sm:flex-row justify-center items-center  gap-2 sm:gap-8">
+      <div
+        class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-8"
+      >
         <h1 class="text-3xl font-medium p-4">
           {year}&nbsp;{make}&nbsp;{model}
         </h1>
@@ -37,7 +41,7 @@ const { year } = Astro.props;
             <div
               class="w-10 h-10 rounded-full bg-red-500 flex justify-center items-center"
             >
-              <p class="text-2xl font-bold text-white">#</p>
+              <RecallNumber make={make} model={model} year={year} client:load />
             </div>
             <p class="text-xl">Recalls</p>
           </div>
@@ -88,16 +92,7 @@ const { year } = Astro.props;
           </div>
 
           <!-- Recall Information -->
-          <div class="grid grid-cols-4 gap-2">
-            <div class="col-span-1 flex items-center justify-end">
-              <p class="mr-2">2023-10-18:</p>
-            </div>
-            <div
-              class="col-span-3 rounded bg-gray-100 border border-gray-200 p-2"
-            >
-              <p class="pl-2 w-max">Faulty airbags</p>
-            </div>
-          </div>
+          <RecallTable make={make} model={model} year={year} client:load />
         </div>
       </div>
     </ContainerLarge>

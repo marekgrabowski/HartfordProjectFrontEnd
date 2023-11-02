@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContainerLarge from '../components/ContainerLarge.astro';
+import AllVehicleTable from '../components/AllVehicleTable';
 ---
 
 <Layout title="TWW Hartford Project.">
 	<main>
 		<ContainerLarge>
 			<h1 class="text-center text-3xl font-medium p-4">Vehicle Table</h1>
-			<p class="text-center font-medium">View vehicles</p>
+			<p class="text-center font-medium">A table with vehicles in our database will be shown here</p>
+			<AllVehicleTable client:load/>
 		</ContainerLarge>
 	</main>
 </Layout>

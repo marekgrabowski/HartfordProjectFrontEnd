@@ -2,7 +2,7 @@ import { navItems } from "../../utils/navigation";
 
 const Navbar = () => {
   return (
-    <nav class="hidden sm:block"> 
+    <nav className="hidden sm:block"> 
       <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1 ">
         {
           navItems.map((navItem) => (
