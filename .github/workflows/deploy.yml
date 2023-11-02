@@ -21,5 +21,7 @@ jobs:
         run: npm ci
       - name: Build application
         run: npm run build
+      - name: Run Cypress Test
+        run: npx cypress run --spec "cypress/integration/tww-test-spec.cy.js
       - name: Deploy to S3
         run: aws s3 sync --delete ./dist/ s3://${{ secrets.BUCKET_ID }}
