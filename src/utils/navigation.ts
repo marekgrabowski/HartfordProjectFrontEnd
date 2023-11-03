@@ -5,6 +5,13 @@ export const navItems = [
         route: "/",
         text: "Home",
     },
+];
+
+export const navItemsLoggedIn = [
+    {
+        route: "/",
+        text: "Home",
+    },
     {
         route: "/search",
         text: "Search",
