@@ -15,12 +15,12 @@ async function getVehicleData() {
       throw new Error('Failed to fetch data');
     }
 
-    const data = await response.json();
+    const responseBody = await response.json();
 
-    if (Array.isArray(data)) {
-      return data;
+    if (Array.isArray(responseBody.body)) {
+      return responseBody.body;
     } else {
-      console.error('API response is not an array:', data);
+      console.error('API response body is not an array:', responseBody);
       return [];
     }
   } catch (error) {
