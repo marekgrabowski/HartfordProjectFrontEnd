@@ -9,14 +9,14 @@ import RecallNumber from "../../components/RecallNumber";
 
 export async function getStaticPaths() {
   const data = await getVehicleData();
-  const paths = data.map((vehicle) => ({
+  const paths = data.map((vehicle: { make_name: string; model_name: string; model_year: string; }) => ({
     params: {
-      vehicle: vehicle.make + "-" + vehicle.model + "-" + vehicle.year, // Use the id as the slug
+      vehicle: vehicle.make_name + "-" + vehicle.model_name + "-" + vehicle.model_year, // Use the id as the slug
     },
     props: {
-      make: vehicle.make,
-      model: vehicle.model,
-      year: vehicle.year,
+      make: vehicle.make_name,
+      model: vehicle.model_name,
+      year: vehicle.model_year,
     },
   }));
   return paths;
