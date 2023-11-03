@@ -90,7 +90,6 @@ export default function Signup() {
                 name="date_of_birth"
                 type="number"
                 autoComplete="age"
-                ref={ref}
                 required
                 placeholder="Age"
                 onChange={handleChange}
