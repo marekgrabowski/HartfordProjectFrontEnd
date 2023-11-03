@@ -34,6 +34,7 @@ export default function Login() {
       if (data) {
         const sessionToken = data.token;
         localStorage.setItem('sessiontoken', sessionToken);
+        window.location.href = "/search";
       } else {
         console.error('Error in the API response:', data.error); // Log the error message from the response
       }
