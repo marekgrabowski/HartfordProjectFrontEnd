@@ -17,8 +17,4 @@ export const navItems = [
         route: "/account",
         text: "My Account",
     },
-    {
-        route: "/signup",
-        text: "Sign Up",
-    },
 ];
