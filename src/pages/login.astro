@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ContainerSmall from "../components/ContainerSmall.astro";
-import SignupComponent from "../components/Signup";
+import LoginComponent from "../components/Login";
 ---
 
 <Layout title="TWW Hartford Project.">
 	<main>
 		<ContainerSmall>
-			  <SignupComponent client:load/>
+			<LoginComponent client:load/>
 		</ContainerSmall>
 	</main>
 </Layout>

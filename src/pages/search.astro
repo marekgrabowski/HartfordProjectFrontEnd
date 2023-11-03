@@ -29,7 +29,7 @@ const makes = await fetch(
 			<h1 class="text-center text-3xl font-medium p-4">Vehicle Search</h1>
 			<p class="text-center pb-5">
 				Select a Make Model and Year from the drop downs to lookup a
-				vechicle
+				vehicle
 			</p>
 			<!-- Client Loaded "Dynamic Island" Allows runtime JS -->
 			<VehicleForm makes={makes} client:only="react" />

@@ -76,8 +76,8 @@ export default function VehicleForm({ makes }) {
         const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelYearsForModel?model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
         const yearOptions = data.body.map((year) => ({
-        value: year.year,
-        label: year.year,
+        value: year.modelyear,
+        label: year.modelyear,
       }));
       setYears(yearOptions);  
       } catch (error) {
