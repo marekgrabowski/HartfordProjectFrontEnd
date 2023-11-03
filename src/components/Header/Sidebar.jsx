@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { navItems } from "../../utils/navigation";
+import { navItems, navItemsLoggedIn } from "../../utils/navigation";
 
 const Sidebar = ({ open = false, setOpen }) => {
   let sessionToken;
@@ -11,6 +11,9 @@ const Sidebar = ({ open = false, setOpen }) => {
     console.error("Error accessing localStorage:", error.message);
     // Handle the error, if necessary
   }
+
+  const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
+
 
   const handleSignOut = () => {
     // Remove the session token from local storage when signing out
@@ -40,7 +43,7 @@ const Sidebar = ({ open = false, setOpen }) => {
         </svg>
       </button>
       <div className="flex flex-col items-center justify-center gap-12 h-full list-none">
-        {navItems.map((navItem) => (
+        {navigationItems.map((navItem) => (
           <li key={navItem.route}>
             <a
               href={navItem.route}

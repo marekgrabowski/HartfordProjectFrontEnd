@@ -1,4 +1,4 @@
-import { navItems } from "../../utils/navigation";
+import { navItems, navItemsLoggedIn } from "../../utils/navigation";
 
 const Navbar = () => {
   let sessionToken;
@@ -11,6 +11,8 @@ const Navbar = () => {
     // Handle the error, if necessary
   }
 
+  const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
+
   const handleSignOut = () => {
     // Remove the session token from local storage when signing out
     localStorage.removeItem("sessiontoken");
@@ -20,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="hidden sm:block">
       <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1 ">
-        {navItems.map((navItem) => (
+        {navigationItems.map((navItem) => (
           <li key={navItem.route}>
             <a
               href={navItem.route}
