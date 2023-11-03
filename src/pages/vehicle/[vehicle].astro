@@ -11,20 +11,18 @@ export async function getStaticPaths() {
   const data = await getVehicleData();
   const paths = data.map((vehicle) => ({
     params: {
-      vehicle: vehicle.make + "-" + vehicle.model + "-" + vehicle.year, // Use the id as the slug
+      vehicle: vehicle.modelyear_id, // Use the id as the slug
     },
     props: {
-      make: vehicle.make,
-      model: vehicle.model,
-      year: vehicle.year,
+      make: vehicle.make_name,
+      model: vehicle.model_name,
+      year: vehicle.modelyear,
     },
   }));
   return paths;
 }
 
-const { make } = Astro.props;
-const { model } = Astro.props;
-const { year } = Astro.props;
+const { make, model, year } = Astro.props;
 ---
 
 <Layout title="TWW Hartford Project.">
