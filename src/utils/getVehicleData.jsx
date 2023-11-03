@@ -10,7 +10,7 @@ async function getVehicleData() {
         headers: headers,
       };
 
-      const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/test1/vehicles", requestOptions);
+      const response = await fetch("https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles", requestOptions);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
