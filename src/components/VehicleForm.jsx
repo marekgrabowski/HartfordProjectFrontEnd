@@ -67,19 +67,22 @@ export default function VehicleForm({ makes }) {
           'Authorization': 'allow',
           'Content-Type': 'application/json',
         };
-
+  
         const requestOptions = {
           method: 'GET',
           headers: headers,
         };
-
+  
         const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelYearsForModel?model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
+  
+        // Map the years and set the state variable
         const yearOptions = data.body.map((year) => ({
-        value: year.modelyear,
-        label: year.modelyear,
-      }));
-      setYears(yearOptions);  
+          value: year.modelyear_id,
+          label: year.modelyear,
+        }));
+  
+        setYears(yearOptions);
       } catch (error) {
         console.error('Error fetching years:', error);
       }
@@ -89,10 +92,12 @@ export default function VehicleForm({ makes }) {
   const handleMakeChange = (selectedOption) => {
     setSelectedMake(selectedOption);
     setSelectedModel(null);
+    setSelectedYear(null);
   };
   
   const handleModelChange = (selectedOption) => {
     setSelectedModel(selectedOption);
+    setSelectedYear(null);
   };
 
   const handleYearChange = (selectedOption) => {
@@ -101,7 +106,7 @@ export default function VehicleForm({ makes }) {
 
   const handleSubmit = () => {
     if (selectedMake && selectedModel && selectedYear) {
-      const url = `/vehicle/${selectedMake.value}-${selectedModel.value}-${selectedYear.value}`;
+      const url = `/vehicle/${selectedYear.value}`;
       window.location.href = url;
     } else {
       console.log("Redirection Error");
