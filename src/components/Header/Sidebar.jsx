@@ -44,12 +44,12 @@ const Sidebar = ({ open = false, setOpen }) => {
       </button>
       <div className="flex flex-col items-center justify-center gap-12 h-full list-none">
         {navigationItems.map((navItem) => (
-          <li key={navItem.route}>
+          <li key={navItem.path}>
             <a
-              href={navItem.route}
+              href={navItem.path}
               className="relative text-3xl font-medium text-white before:absolute before:-bottom-1.5 before:h-0.5 before:w-full before:scale-x-0 before:bg-sky-200 before:transition hover:before:scale-x-100"
             >
-              {navItem.text}
+              {navItem.component}
             </a>
           </li>
         ))}
