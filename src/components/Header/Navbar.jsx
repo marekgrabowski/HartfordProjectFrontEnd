@@ -7,8 +7,7 @@ const Navbar = () => {
     // Attempt to get the session token from localStorage
     sessionToken = localStorage.getItem("sessiontoken");
   } catch (error) {
-    console.error("Error accessing localStorage:", error.message);
-    // Handle the error, if necessary
+    // console.error("Error accessing localStorage:", error.message);
   }
 
   const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
@@ -21,14 +20,14 @@ const Navbar = () => {
 
   return (
     <nav className="hidden sm:block">
-      <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1 ">
+      <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1">
         {navigationItems.map((navItem) => (
-          <li key={navItem.route}>
+          <li key={navItem.path}>
             <a
-              href={navItem.route}
-              className="relative font-medium text-white before:absolute before:-bottom-1.5 before:h-0.5 before:w-full before:scale-x-0 before:bg-sky-200 before:transition hover:before:scale-x-100"
+              href={navItem.path}
+              className="relative font-medium text-white ::before:absolute ::before:-bottom-1.5 ::before:h-0.5 ::before:w-full ::before:scale-x-0 ::before:bg-sky-200 ::before:transition hover::before:scale-x-100"
             >
-              {navItem.text}
+              {navItem.component}
             </a>
           </li>
         ))}
