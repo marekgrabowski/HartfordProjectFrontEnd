@@ -26,7 +26,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/accounts/login",
+        "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login",
         requestOptions
       );
 
