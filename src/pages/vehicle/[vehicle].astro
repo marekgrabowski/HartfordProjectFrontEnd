@@ -41,7 +41,6 @@ const { make, model, year } = Astro.props;
               class="w-10 h-10 rounded-full bg-red-500 flex justify-center items-center"
             >
               <RecallNumber make={make} model={model} year={year} client:load />
-              
             </div>
             <p class="text-xl">Recalls</p>
           </div>
@@ -94,9 +93,9 @@ const { make, model, year } = Astro.props;
           <!-- Recall Information -->
           <RecallTable make={make} model={model} year={year} client:load />
         </div>
-        <div class="justify-center">
-          <PremiumNumber make={make} model={model} year={year} client:load />
-        </div>
+      </div>
+      <div class=" text-center">
+        <PremiumNumber make={make} model={model} year={year} client:load />
       </div>
     </ContainerLarge>
   </main>
