@@ -6,6 +6,7 @@ import ContainerLarge from "../../components/ContainerLarge.astro";
 import getVehicleData from "../../utils/getVehicleData";
 import RecallTable from "../../components/RecallTable";
 import RecallNumber from "../../components/RecallNumber";
+import PremiumNumber from "../../components/PremiumNumber";
 
 export async function getStaticPaths() {
   const data = await getVehicleData();
@@ -40,6 +41,7 @@ const { make, model, year } = Astro.props;
               class="w-10 h-10 rounded-full bg-red-500 flex justify-center items-center"
             >
               <RecallNumber make={make} model={model} year={year} client:load />
+              
             </div>
             <p class="text-xl">Recalls</p>
           </div>
@@ -91,6 +93,9 @@ const { make, model, year } = Astro.props;
 
           <!-- Recall Information -->
           <RecallTable make={make} model={model} year={year} client:load />
+        </div>
+        <div class="justify-center">
+          <PremiumNumber make={make} model={model} year={year} client:load />
         </div>
       </div>
     </ContainerLarge>
