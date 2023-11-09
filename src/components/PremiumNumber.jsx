@@ -39,10 +39,10 @@ const PremiumNumber = ({ make, model, year }) => {
                 }
 
                 const data = await response.json();
-                if (data && data.premium !== undefined) {
-                    setPremium(data.premium);
+                if (data && data.body.premium !== undefined) {
+                    setPremium(data.body.premium);
                 } else {
-                    throw new Error("No premium data available");
+                    throw new Error(JSON.stringify(data));
                 }
             } catch (fetchError) {
                 setError(fetchError.message);
@@ -57,9 +57,9 @@ const PremiumNumber = ({ make, model, year }) => {
             {error ? (
                 <p className="text-xl font-bold text-red-500">Error: {error}</p>
             ) : premium !== null ? (
-                <p className="text-2xl font-bold text-white">{premium}</p>
+                <p className="text-2xl font-bold text-black">Premium: ${premium}</p>
             ) : (
-                <p className="text-2xl font-bold text-white">Calculating...</p>
+                <p className="text-2xl font-bold text-black">Calculating...</p>
             )}
         </div>
     );
