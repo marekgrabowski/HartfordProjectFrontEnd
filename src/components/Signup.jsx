@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loading from './Loading';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
