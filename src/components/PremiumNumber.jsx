@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Loading from './Loading';
+
 
 const PremiumNumber = ({ make, model, year }) => {
     const [premium, setPremium] = useState(null);
@@ -39,10 +41,12 @@ const PremiumNumber = ({ make, model, year }) => {
                 }
 
                 const data = await response.json();
+
                 if (data && data.body.premium !== undefined) {
                     setPremium(data.body.premium);
                 } else {
                     throw new Error(JSON.stringify(data));
+
                 }
             } catch (fetchError) {
                 setError(fetchError.message);
@@ -57,9 +61,11 @@ const PremiumNumber = ({ make, model, year }) => {
             {error ? (
                 <p className="text-xl font-bold text-red-500">Error: {error}</p>
             ) : premium !== null ? (
-                <p className="text-2xl font-bold text-black">Premium: ${premium}</p>
+
+                <p className="text-2xl font-bold">{premium}</p>
             ) : (
-                <p className="text-2xl font-bold text-black">Calculating...</p>
+                <Loading text="Loading..." />
+
             )}
         </div>
     );

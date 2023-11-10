@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Loading from './Loading';
 
 const RecallTable = ({ make, model, year }) => {
   const [recalls, setRecalls] = useState(null);
@@ -46,7 +47,7 @@ const RecallTable = ({ make, model, year }) => {
           ))
         )
       ) : (
-        <p>Loading data...</p>
+        <Loading text="Loading..." />
       )}
     </div>
   );
