@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RecallTable = ({ make, model, year }) => {
+const RecallNumber = ({ make, model, year }) => {
     const [recalls, setRecalls] = useState(null);
     const [error, setError] = useState(null);
 
@@ -39,4 +39,4 @@ const RecallTable = ({ make, model, year }) => {
     );
 };
 
-export default RecallTable;
+export default RecallNumber;
