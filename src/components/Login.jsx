@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import Loading from './Loading'; // Import your Loading component
+
 
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,24 +27,33 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/accounts/login",
-      requestOptions
-    );
-    if (response.ok) {
-      const data = await response.json(); // Call it once and store it in 'data'
-      console.log(data); // Log the response data
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login",
+        requestOptions
+      );
 
-      if (data) {
+      if (response.ok) {
+        const data = await response.json();
         const sessionToken = data.token;
-        localStorage.setItem('sessiontoken', sessionToken);
+        if (sessionToken) {
+          localStorage.setItem('sessiontoken', sessionToken);
+          window.location.href = "/search";
+        } else {
+          setIsLoading(false);
+          setError("Invalid email");
+        }
       } else {
-        console.error('Error in the API response:', data.error); // Log the error message from the response
+        setIsLoading(false);
+        const errorData = await response.json();
+        setError(errorData.error);
       }
-    } else {
-      console.error('Error in the API response:', response.status, response.statusText);
+    } catch (error) {
+      setIsLoading(false);
+      setError("An error occurred during login.");
     }
-  };
+  }
 
   return (
 
@@ -51,31 +64,37 @@ export default function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" method="POST" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-            <div className="mt-2">
-              <input id="email" name="email" type="email" autoComplete="email" onChange={handleChange} required className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <Loading />
           </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
-              <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+        ) : (
+          <form className="space-y-6" method="POST" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+              <div className="mt-2">
+                <input id="email" name="email" type="email" autoComplete="email" onChange={handleChange} required className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
               </div>
             </div>
-            <div className="mt-2">
-              <input id="password" name="password" type="password" autoComplete="current-password" onChange={handleChange} required className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                <div className="text-sm">
+                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                </div>
+              </div>
+              <div className="mt-2">
+                <input id="password" name="password" type="password" autoComplete="current-password" onChange={handleChange} required className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
             </div>
-          </div>
 
-          <div>
-            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-          </div>
-        </form>
-
+            <div>
+              <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+            </div>
+          </form>
+        )}
+        <div className="text-red-500 text-sm mt-2">{error}</div>
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member?
           <a href="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">&nbsp;Create an account</a>

@@ -45,7 +45,7 @@ export default function VehicleForm({ makes }) {
           headers: headers,
         };
 
-        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelsForMake?make=${selectedMake.value}`, requestOptions);
+        const response = await fetch(`https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/models?make=${selectedMake.value}`, requestOptions);
         const data = await response.json();
 
         const modelOptions = data.body.map((model) => ({
@@ -73,7 +73,7 @@ export default function VehicleForm({ makes }) {
           headers: headers,
         };
   
-        const response = await fetch(`https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/vehicles/GetModelYearsForModel?model=${selectedModel.value}`, requestOptions);
+        const response = await fetch(`https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/modelyears?model=${selectedModel.value}`, requestOptions);
         const data = await response.json();
   
         // Map the years and set the state variable

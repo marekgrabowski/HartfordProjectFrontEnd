@@ -2,23 +2,26 @@
 
 export const navItems = [
     {
-        route: "/",
-        text: "Home",
+        path: "/",
+        component: "Home",
+    },
+];
+
+export const navItemsLoggedIn = [
+    {
+        path: "/",
+        component: "Home",
     },
     {
-        route: "/search",
-        text: "Search",
+        path: "/search",
+        component: "Search",
     },
     {
-        route: "/viewall",
-        text: "View All Vehicles",
+        path: "/viewall",
+        component: "View All Vehicles",
     },
     {
-        route: "/account",
-        text: "My Account",
-    },
-    {
-        route: "/signup",
-        text: "Sign Up",
+        path: "/account",
+        component: "My Account",
     },
 ];

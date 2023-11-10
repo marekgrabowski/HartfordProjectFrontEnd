@@ -1,16 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import Loading from './Loading'; // Import your Loading component
 
 export default function Signup() {
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     state: "",
-    date_of_birth: "",
+    age: "",
     email: "",
     password: "",
     passwordconfirmation: "",
   });
-  const ref = useRef();
+
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,12 +32,26 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/accounts/create",
-      requestOptions
-    );
-    console.log(formData);
-    console.log(response);
+    setIsLoading(true); // Set loading state to true while waiting for response
+    try {
+      const response = await fetch(
+        "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/signup",
+        requestOptions
+      );
+      if (response.ok) {
+        console.log(formData);
+        console.log(response);
+        window.location.href = "/login";
+      } else {
+        // Handle error if the request was not successful
+        console.error('Request failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false); // Set loading state back to false
+    }
+
   };
 
   return (
@@ -51,108 +67,105 @@ export default function Signup() {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
-          <div>
-            <label className="text-md font-bold">User Information</label>
-            <div className="grid-cols-2 grid gap-2 my-2">
-              <input
-                id="first_name"
-                name="first_name"
-                type="text"
-                autoComplete="given-name"
-                placeholder="First Name"
-                required
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <input
-                id="last_name"
-                name="last_name"
-                type="text"
-                autoComplete="family-name"
-                placeholder="Last Name"
-                required
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <input
-                id="state"
-                name="state"
-                type="text"
-                autoComplete="state"
-                placeholder="State"
-                required
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <input
-                id="date_of_birth"
-                name="date_of_birth"
-                type="text"
-                autoComplete="birthday"
-                ref={ref}
-                required
-                placeholder="Date of Birth"
-                onChange={handleChange}
-                onFocus={() => {
-                  if (ref.current) {
-                    ref.current.type = "date"
-                  }
-                }}
-                onBlur={() => {
-                  if (ref.current) {
-                    ref.current.type = formData.date_of_birth ? "date" : "text"
-                  }
-                }}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <Loading />
           </div>
-          <div>
-            <label className="text-md font-bold">Login Information</label>
-            <div className="grid-cols-1 grid gap-2 my-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Your email"
-                required
-                onChange={handleChange}
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="Password"
-                required
-                onChange={handleChange}
-                minLength="8"
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <input
-                id="passwordconfirmation"
-                name="passwordconfirmation"
-                type="password"
-                placeholder="Confirm Password"
-                required
-                onChange={handleChange}
-                minLength="8"
-                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="flex w-full mt-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
+        ) : (
+          <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
+            <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
+              <div>
+                <label className="text-md font-bold">User Information</label>
+                <div className="grid-cols-2 grid gap-2 my-2">
+                  <input
+                    id="first_name"
+                    name="first_name"
+                    type="text"
+                    autoComplete="given-name"
+                    placeholder="First Name"
+                    required
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <input
+                    id="last_name"
+                    name="last_name"
+                    type="text"
+                    autoComplete="family-name"
+                    placeholder="Last Name"
+                    required
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <input
+                    id="state"
+                    name="state"
+                    type="text"
+                    autoComplete="state"
+                    placeholder="State"
+                    required
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <input
+                    id="date_of_birth"
+                    name="date_of_birth"
+                    type="number"
+                    autoComplete="age"
+                    required
+                    placeholder="Age"
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-md font-bold">Login Information</label>
+                <div className="grid-cols-1 grid gap-2 my-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Your email"
+                    required
+                    onChange={handleChange}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="Password"
+                    required
+                    onChange={handleChange}
+                    minLength="8"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                  <input
+                    id="passwordconfirmation"
+                    name="passwordconfirmation"
+                    type="password"
+                    placeholder="Confirm Password"
+                    required
+                    onChange={handleChange}
+                    minLength="8"
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full mt-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </form>
+        )}
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
           <a
