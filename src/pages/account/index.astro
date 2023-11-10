@@ -1,14 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContainerLarge from '../../components/ContainerLarge.astro';
+import SubNav from '../../components/SubNav.astro';
 ---
 
 <Layout title="My Account Settings">
 	<main>
-		<ContainerLarge>
-			<h1 class="text-center text-3xl font-medium p-4">My Account</h1>
-			<p class="text-center font-medium pb-5">View and modify account information</p>
-			<p class="text-center text-sm font-medium pb-5">This application is independant of the Hartford, it is a student project mocking real deployments.</p>
-		</ContainerLarge>
+			<ContainerLarge>
+				<div class="flex h-full">
+					<div class="flex-auto text-center bg-blue-500 rounded-l-md">
+						Conents
+					</div>
+				<div class="flex-auto bg-blue-200 w-1/2 rounded-r-md">
+					<h1 class="text-center text-3xl font-medium p-4">My Account</h1>
+					<p class="text-center font-medium pb-5">View and modify account information</p>	
+				</div>
+			</div>
+					
+			</ContainerLarge>
+			</main>
+		</Layout>
+		
 	</main>
 </Layout>

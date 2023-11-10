@@ -3,10 +3,10 @@ import Loading from './Loading'; // Import your Loading component
 
 export default function Signup() {
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     state: "",
-    date_of_birth: "",
+    age: "",
     email: "",
     password: "",
     passwordconfirmation: "",
@@ -35,7 +35,7 @@ export default function Signup() {
     setIsLoading(true); // Set loading state to true while waiting for response
     try {
       const response = await fetch(
-        "https://13g2g9a95h.execute-api.us-east-1.amazonaws.com/api/accounts/create",
+        "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/signup",
         requestOptions
       );
       if (response.ok) {
@@ -51,6 +51,7 @@ export default function Signup() {
     } finally {
       setIsLoading(false); // Set loading state back to false
     }
+
   };
 
   return (

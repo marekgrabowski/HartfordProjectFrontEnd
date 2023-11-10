@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
 
+
 const PremiumNumber = ({ make, model, year }) => {
     const [premium, setPremium] = useState(null);
     const [error, setError] = useState(null);
@@ -40,10 +41,12 @@ const PremiumNumber = ({ make, model, year }) => {
                 }
 
                 const data = await response.json();
-                if (data && data.premium !== undefined) {
-                    setPremium(data.premium);
+
+                if (data && data.body.premium !== undefined) {
+                    setPremium(data.body.premium);
                 } else {
-                    throw new Error("No premium data available");
+                    throw new Error(JSON.stringify(data));
+
                 }
             } catch (fetchError) {
                 setError(fetchError.message);
@@ -58,9 +61,11 @@ const PremiumNumber = ({ make, model, year }) => {
             {error ? (
                 <p className="text-xl font-bold text-red-500">Error: {error}</p>
             ) : premium !== null ? (
+
                 <p className="text-2xl font-bold">{premium}</p>
             ) : (
                 <Loading text="Loading..." />
+
             )}
         </div>
     );
