@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
+import Modal from './Modal';
 
 
 const PremiumNumber = ({ make, model, year }) => {
@@ -23,7 +24,7 @@ const PremiumNumber = ({ make, model, year }) => {
                 Authorization: sessionToken,
                 "Content-Type": "application/json",
             };
-            
+
             const requestOptions = {
                 method: "GET",
                 headers: headers,
@@ -59,10 +60,15 @@ const PremiumNumber = ({ make, model, year }) => {
     return (
         <div>
             {error ? (
+                <div>
                 <p className="text-xl font-bold text-red-500">Error: {error}</p>
+                <Modal title='Edit Premium' desc='Override Base Permium Value' field={premium} field_type='number' openicon='edit'  />
+                </div>
             ) : premium !== null ? (
-
-                <p className="text-2xl font-bold">{premium}</p>
+                <div>
+                    <p className="text-2xl font-bold">{premium}</p>
+                    <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon  />
+                </div>
             ) : (
                 <Loading text="Loading..." />
 
