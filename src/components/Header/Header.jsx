@@ -8,6 +8,13 @@ const Header = () => {
   return (
     <div className="flex items-center">
       <div className="flex items-center z-20">
+        <div class="flex items-center">
+          <img
+            class="w-14"
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Hartford_Financial_Services_Group_logo.svg/1200px-The_Hartford_Financial_Services_Group_logo.svg.png"
+            alt="Hartford Logo"
+          />
+        </div>
         <NavMenu />
       </div>
       <div className="flex sm:hidden items-center">
