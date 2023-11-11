@@ -60,14 +60,14 @@ const PremiumNumber = ({ make, model, year }) => {
     return (
         <div>
             {error ? (
-                <div>
-                <p className="text-xl font-bold text-red-500">Error: {error}</p>
-                <Modal title='Edit Premium' desc='Override Base Permium Value' field={premium} field_type='number' openicon='edit'  />
+                <div class="flex">
+                    <p className="text-xl font-bold text-red-500">Error: {error}</p>
+                    <Modal title='Edit Premium' desc='Override Base Permium Value' field={premium} field_type='number' openicon='edit' />
                 </div>
             ) : premium !== null ? (
-                <div>
-                    <p className="text-2xl font-bold">{premium}</p>
-                    <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon  />
+                <div class="flex">
+                    <p className="text-2xl font-bold">${premium}</p>
+                    <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon />
                 </div>
             ) : (
                 <Loading text="Loading..." />
