@@ -51,7 +51,7 @@ const Modal = ({ title, desc, field, field_type, openicon, api_endpoint }) => {
   return (
     <>
       <button onClick={openModal} className="px-4 py-2 text-white rounded">
-        {openicon === 'edit' && <img src="../../public/pencil.svg" alt="Edit" />}
+        {openicon === 'edit' && <img src="../src/assets/pencil.svg" alt="Edit" />}
       </button>
 
       {isOpen && (
@@ -70,7 +70,7 @@ const Modal = ({ title, desc, field, field_type, openicon, api_endpoint }) => {
                       <p className="text-sm text-gray-500">
                         {desc}
                       </p>
-                      <input type={field_type} id='edit_value' name='edit_value' value={field} />
+                      <input type={field_type} id='edit_value' name='edit_value' value={field} className="border-2 border-gray-500 rounded-sm"/>
                     </div>
                   </div>
                 </div>
