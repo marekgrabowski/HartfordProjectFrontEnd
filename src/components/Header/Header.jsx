@@ -6,18 +6,16 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex items-center">
-      <div className="flex items-center z-20">
-        <div class="flex items-center">
-          <img
-            class="w-14"
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Hartford_Financial_Services_Group_logo.svg/1200px-The_Hartford_Financial_Services_Group_logo.svg.png"
-            alt="Hartford Logo"
-          />
-        </div>
+    <div className="flex items-center justify-between w-full sm:w-auto">
+      <div className="flex items-center">
+        <img
+          className="w-14"
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Hartford_Financial_Services_Group_logo.svg/1200px-The_Hartford_Financial_Services_Group_logo.svg.png"
+          alt="Hartford Logo"
+        />
         <NavMenu />
       </div>
-      <div className="flex sm:hidden items-center">
+      <div className="sm:hidden items-center">
         <button
           onClick={() => setOpen(true)}
           aria-expanded={open}

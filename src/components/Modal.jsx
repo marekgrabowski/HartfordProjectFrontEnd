@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import edit from '../assets/pencil.svg';
+import edit from '../../public/pencil.svg'
 
 const Modal = ({ title, desc, field, field_type, openicon, api_endpoint }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,8 +50,8 @@ const Modal = ({ title, desc, field, field_type, openicon, api_endpoint }) => {
 
   return (
     <>
-      <button onClick={openModal} className="px-4 py-2 text-white bg-blue-500 rounded">
-        <img src={edit}></img>
+      <button onClick={openModal} className="px-4 py-2 text-white rounded">
+        {openicon === 'edit' && <img src="../../public/pencil.svg" alt="Edit" />}
       </button>
 
       {isOpen && (
