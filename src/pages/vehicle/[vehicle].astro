@@ -7,6 +7,7 @@ import getVehicleData from "../../utils/getVehicleData";
 import RecallTable from "../../components/RecallTable";
 import RecallNumber from "../../components/RecallNumber";
 import PremiumNumber from "../../components/PremiumNumber";
+import RiskFactor from "../../components/RiskFactor";
 
 export async function getStaticPaths() {
   const data = await getVehicleData();
@@ -44,8 +45,8 @@ const { make, model, year } = Astro.props;
             </div>
             <p class="text-xl">Recalls</p>
           </div>
-          <div class="bg-red-500 rounded-xl py-2 px-4 m-2">
-            <p class="text-xl text text-white">High risk</p>
+          <div class="rounded-xl py-2 px-4 m-2">
+            <RiskFactor make={make} model={model} year={year} client:load/>
           </div>
         </div>
       </div>
@@ -94,7 +95,7 @@ const { make, model, year } = Astro.props;
           <RecallTable make={make} model={model} year={year} client:load />
         </div>
       </div>
-      <div class=" text-center">
+      <div class="text-center">
         <PremiumNumber make={make} model={model} year={year} client:load />
       </div>
     </ContainerLarge>

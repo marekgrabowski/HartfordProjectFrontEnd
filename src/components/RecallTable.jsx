@@ -39,11 +39,14 @@ const RecallTable = ({ make, model, year }) => {
           <p>No recalls found</p>
         ) : (
           recalls.results.map((result, index) => (
-            <><div key={index} className="col-span-1 flex items-center justify-end">
-              <p className="mr-2">{result.ReportReceivedDate}:</p>
-            </div><div className="col-span-3 rounded bg-gray-100 border border-gray-200 p-2">
-                <p className="pl-2 break-normal">{result.Component}</p>
-              </div></>
+            <div key={index} className="col-span-4 flex flex-wrap">
+              <div className="col-span-1 flex items-center justify-end">
+                <p className="mr-2">{result.ReportReceivedDate}:</p>
+              </div>
+              <div className="col-span-3 rounded bg-gray-100 border border-gray-200 p-2 w-full sm:w-[75%]">
+                <p className="pl-2 break-normal ">{result.Component}</p>
+              </div>
+            </div>
           ))
         )
       ) : (
