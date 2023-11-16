@@ -24,7 +24,7 @@ export const team = [
         linkedin: "https://www.linkedin.com/in/marekgrabski/",
     },
     {
-        image: "/public/michaelCoxImg.jpg",
+        image: "/michaelCoxImg.jpg",
         name: "Michael Cox",
         bio: "Michael Cox is a senior studying Computer Science at Central Connecticut State University, expecting to graduate in May 2024. He has been working as a Machine Vision Programmer at Alta Vision Systems in Westbrook CT full time during summers and part time during college for over 1 year. In this role, he has designed and programmed .NET WPF applications in C# where he specializes in following the MVVM pattern and is adept at integrating machine vision software to deliver high-quality solutions for complex visual analysis tasks. He is always searching to learn new design patterns to create modular and maintainable software.",
         website: "",
@@ -32,7 +32,7 @@ export const team = [
         linkedin: "",
     },
     {
-        image: "/public/MinhTramImg.png",
+        image: "/MinhTramImg.png",
         name: "Minh Tram",
         bio: "Minh Tram is a senior studying Computer Science Honors program at Central Connecticut State University and expecting to earn his Bachelor of Science degree in June 2024. He is a pre-intermediate experienced aerospace computer numerical control (CNC) machinist and familiar with GD&T, Metrology, and G-Code programming. His ongoing, positive, and quick-witted personality made him highly efficient at work and willingness to put himself in other’s shoes. He is always looking for any opportunity that will improve his capabilities, expand his knowledge, and make a meaningful impact on other people’s lives and communities.",
         website: "",
