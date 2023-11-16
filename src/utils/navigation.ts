@@ -16,10 +16,10 @@ export const navItemsLoggedIn = [
         path: "/search",
         component: "Search",
     },
-    {
-        path: "/viewall",
-        component: "View All Vehicles",
-    },
+    // {
+    //     path: "/viewall",
+    //     component: "View All Vehicles",
+    // },
     {
         path: "/account",
         component: "My Account",
