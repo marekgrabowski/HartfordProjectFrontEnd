@@ -71,7 +71,6 @@ export default function Signup() {
             <Loading />
           </div>
         ) : (
-          <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
             <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
               <div>
                 <label className="text-md font-bold">User Information</label>
@@ -163,7 +162,6 @@ export default function Signup() {
                 </button>
               </div>
             </form>
-          </form>
         )}
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
