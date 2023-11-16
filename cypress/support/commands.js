@@ -21,7 +21,7 @@ Cypress.Commands.add("SelectYearDropdown", ()=>{
     cy.xpath("//div[.='Select Year']/following-sibling::div/child::input")
 })
 Cypress.Commands.add("selectOption", (entry)=>{
-    cy.xpath("//div[.='"+entry+"']")
+    cy.xpath("//div[.='"+entry+"']").eq(0)
 })
 Cypress.Commands.add("LogInButton", ()=>{
     cy.xpath("//a[@href='/login']")
@@ -34,5 +34,9 @@ Cypress.Commands.add("SignUpButton", ()=>{
 })
 Cypress.Commands.add("SignInButton", ()=>{
     cy.xpath("//button[.='Sign in']")
+})
+Cypress.Commands.add("SubmitButton", ()=>{
+    cy.xpath("//button[.='Submit']")
+
 })
 
