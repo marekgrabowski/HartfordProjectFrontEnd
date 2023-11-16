@@ -61,13 +61,13 @@ const RiskFactor = ({ make, model, year }) => {
     };
 
     return (
-        <div className="container mt-5 w-32 text-center">
+        <div className=" items-center w-64 text-center flex">
         {riskFactor !== null ? (
             <>
-                <div className="safety-bar-container rounded-lg" style={{ position: 'relative', width: '100%', height: '30px', background: 'linear-gradient(to right, green, yellow, red)', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}>
-                    <div className="safety-dot" style={{ width: '20px', height: '20px', backgroundColor: 'white', borderRadius: '50%', position: 'absolute', top: '5px', left: dotPosition, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}></div>
+                <div className="rounded-lg" style={{ position: 'relative', width: '100%', height: '30px', background: 'linear-gradient(to right, green, yellow, red)', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}>
+                    <div className="" style={{ width: '20px', height: '20px', backgroundColor: 'white', borderRadius: '50%', position: 'absolute', top: '5px', left: dotPosition, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}></div>
                 </div>
-                <div id="risk-factor-text" style={{ marginTop: '10px' }}>
+                <div className="flex-none ml-4 font-medium">
                     {riskLevel} Risk
                 </div>
             </>
