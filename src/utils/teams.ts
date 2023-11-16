@@ -27,8 +27,8 @@ export const team = [
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
         name: "Michael",
         bio: "Michael Cox is a senior studying Computer Science at Central Connecticut State University, expecting to graduate in May 2024. He has been working as a Machine Vision Programmer at Alta Vision Systems in Westbrook CT full time during summers and part time during college for over 1 year. In this role, he has designed and programmed .NET WPF applications in C# where he specializes in following the MVVM pattern and is adept at integrating machine vision software to deliver high-quality solutions for complex visual analysis tasks. He is always searching to learn new design patterns to create modular and maintainable software.",
-        website: "https://github.com/michaelcox3",
-        github: "",
+        website: "",
+        github: "https://github.com/michaelcox3",
         linkedin: "",
     },
     {
