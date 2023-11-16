@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './Loading';
+import Modal from './Modal';
 
 
 const PremiumNumber = ({ make, model, year }) => {
@@ -23,7 +24,7 @@ const PremiumNumber = ({ make, model, year }) => {
                 Authorization: sessionToken,
                 "Content-Type": "application/json",
             };
-            
+
             const requestOptions = {
                 method: "GET",
                 headers: headers,
@@ -35,6 +36,8 @@ const PremiumNumber = ({ make, model, year }) => {
                     `https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/premium${request}`,
                     requestOptions
                 );
+                console.log(response)
+                console.log(response.body)
 
                 if (!response.ok) {
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -43,7 +46,12 @@ const PremiumNumber = ({ make, model, year }) => {
                 const data = await response.json();
 
                 if (data && data.body.premium !== undefined) {
-                    setPremium(data.body.premium);
+                    if(data.body.premium != null){
+                        setPremium(data.body.premium);
+                    }
+                    else{
+                        throw new Error(`Premium Returned Null`)
+                    }
                 } else {
                     throw new Error(JSON.stringify(data));
 
@@ -59,10 +67,14 @@ const PremiumNumber = ({ make, model, year }) => {
     return (
         <div>
             {error ? (
-                <p className="text-xl font-bold text-red-500">Error: {error}</p>
+                <div className="flex justify-center items-center">
+                    <p className="text-xl font-bold text-red-500">Error: {error}</p>
+                </div>
             ) : premium !== null ? (
-
-                <p className="text-2xl font-bold">{premium}</p>
+                <div className="flex justify-center items-center">
+                    <p className="text-2xl font-bold">${premium}</p>
+                    <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon='edit' />
+                </div>
             ) : (
                 <Loading text="Loading..." />
 
