@@ -1,6 +1,6 @@
 export const team = [
     {
-        image: "../../../public/FarhanaYasminImg.jpg",
+        image: "/FarhanaYasminImg.jpg",
         name: "Farhana Yasmin",
         bio: "Farhana Yasmin, a senior enrolled in the Computer Science program at Central Connecticut State University, is on track to earn her Bachelor's Degree in 2024. Her academic journey began with the successful attainment of an associate degree in Computer Science, accompanied by an academic award from her department. Beyond her major, Farhana is actively pursuing a minor in Mathematics while concentrating her studies on cybersecurity. Her extensive coursework and project experiences have equipped her with a robust skill set. She possesses a profound understanding of Java skills, mastering core concepts,object-oriented principles, proficiently utilizes Java graphics libraries like JavaFX and Swing, excels in GUI programming, and demonstrates exceptional expertise in handling exceptions. Furthermore, she boasts proficiency in implementing HTML and CSS, comprehends web principles, and excels in JavaScript. Her unwavering dedication and strong work ethic fuel her drive to excel in her chosen field.",
         website: "",
@@ -8,7 +8,7 @@ export const team = [
         linkedin: "",
     },
     {
-        image: "../../../public/JoeConticelloImg.jpg",
+        image: "/JoeConticelloImg.jpg",
         name: "Joe Conticello",
         bio: "Joseph Conticello is currently a senior in the Computer Science program at Central Connecticut State University and will receive his Bachelor’s degree in December of 2023. He is currently interning at OWIT Global as a Quality Assurance Automation Engineer. Joe is also an accomplished jazz pianist and composer, holding a Bachelor’s Degree in Music Performance from Western Connecticut State University, where he also worked as an adjunct professor. He enjoys bringing a unique and creative perspective to his work space, and prides himself on his ability to be both an effective leader and lifelong learner.",
         website: "",
@@ -24,7 +24,7 @@ export const team = [
         linkedin: "https://www.linkedin.com/in/marekgrabski/",
     },
     {
-        image: "../../../public/michaelCoxImg.jpg",
+        image: "/public/michaelCoxImg.jpg",
         name: "Michael Cox",
         bio: "Michael Cox is a senior studying Computer Science at Central Connecticut State University, expecting to graduate in May 2024. He has been working as a Machine Vision Programmer at Alta Vision Systems in Westbrook CT full time during summers and part time during college for over 1 year. In this role, he has designed and programmed .NET WPF applications in C# where he specializes in following the MVVM pattern and is adept at integrating machine vision software to deliver high-quality solutions for complex visual analysis tasks. He is always searching to learn new design patterns to create modular and maintainable software.",
         website: "",
@@ -32,7 +32,7 @@ export const team = [
         linkedin: "",
     },
     {
-        image: "../../../public/MinhTramImg.png",
+        image: "/public/MinhTramImg.png",
         name: "Minh Tram",
         bio: "Minh Tram is a senior studying Computer Science Honors program at Central Connecticut State University and expecting to earn his Bachelor of Science degree in June 2024. He is a pre-intermediate experienced aerospace computer numerical control (CNC) machinist and familiar with GD&T, Metrology, and G-Code programming. His ongoing, positive, and quick-witted personality made him highly efficient at work and willingness to put himself in other’s shoes. He is always looking for any opportunity that will improve his capabilities, expand his knowledge, and make a meaningful impact on other people’s lives and communities.",
         website: "",
