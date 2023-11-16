@@ -20,7 +20,6 @@ export default function Signup() {
   };
 
   const headers = {
-    Authorization: "allow",
     "Content-Type": "application/json",
   };
 
