@@ -1,6 +1,6 @@
 export const team = [
     {
-        image: "src/assets/FarhanaYasminImg.jpg",
+        image: "HartfordProjectFrontEnd/src/assets/FarhanaYasminImg.jpg",
         name: "Farhana Yasmin",
         bio: "Farhana Yasmin, a senior enrolled in the Computer Science program at Central Connecticut State University, is on track to earn her Bachelor's Degree in 2024. Her academic journey began with the successful attainment of an associate degree in Computer Science, accompanied by an academic award from her department. Beyond her major, Farhana is actively pursuing a minor in Mathematics while concentrating her studies on cybersecurity. Her extensive coursework and project experiences have equipped her with a robust skill set. She possesses a profound understanding of Java skills, mastering core concepts,object-oriented principles, proficiently utilizes Java graphics libraries like JavaFX and Swing, excels in GUI programming, and demonstrates exceptional expertise in handling exceptions. Furthermore, she boasts proficiency in implementing HTML and CSS, comprehends web principles, and excels in JavaScript. Her unwavering dedication and strong work ethic fuel her drive to excel in her chosen field.",
         website: "",
