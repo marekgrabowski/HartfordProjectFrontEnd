@@ -30,9 +30,7 @@ const { make, model, year } = Astro.props;
 <Layout title="TWW Hartford Project.">
   <main>
     <ContainerLarge>
-      <div
-        class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-8"
-      >
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-8">
         <h1 class="text-3xl font-medium p-4">
           {year}&nbsp;{make}&nbsp;{model}
         </h1>
@@ -50,7 +48,10 @@ const { make, model, year } = Astro.props;
           </div>
         </div>
       </div>
-
+      <!-- Vehicle Premium -->
+      <div class="mt-5">
+        <PremiumNumber make={make} model={model} year={year} client:load />
+      </div>
       <div class="flex flex-col sm:flex-row gap-20 p-8">
         <div class="sm:w-1/2">
           <div class="text-3xl my-4 ml-2 sm:ml-10 font-light">
@@ -85,7 +86,7 @@ const { make, model, year } = Astro.props;
             </div>
           </div>
         </div>
-
+        
         <div class="sm:w-1/2">
           <div class="text-3xl my-4 ml-2 sm:ml-10 font-light">
             Recall Information:
@@ -94,9 +95,6 @@ const { make, model, year } = Astro.props;
           <!-- Recall Information -->
           <RecallTable make={make} model={model} year={year} client:load />
         </div>
-      </div>
-      <div class="text-center">
-        <PremiumNumber make={make} model={model} year={year} client:load />
       </div>
     </ContainerLarge>
   </main>

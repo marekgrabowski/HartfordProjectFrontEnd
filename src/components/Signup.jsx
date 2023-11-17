@@ -20,7 +20,6 @@ export default function Signup() {
   };
 
   const headers = {
-    Authorization: "allow",
     "Content-Type": "application/json",
   };
 
@@ -72,14 +71,13 @@ export default function Signup() {
             <Loading />
           </div>
         ) : (
-          <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
             <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
               <div>
                 <label className="text-md font-bold">User Information</label>
                 <div className="grid-cols-2 grid gap-2 my-2">
                   <input
-                    id="first_name"
-                    name="first_name"
+                    id="firstName"
+                    name="firstName"
                     type="text"
                     autoComplete="given-name"
                     placeholder="First Name"
@@ -88,8 +86,8 @@ export default function Signup() {
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <input
-                    id="last_name"
-                    name="last_name"
+                    id="lastName"
+                    name="lastName"
                     type="text"
                     autoComplete="family-name"
                     placeholder="Last Name"
@@ -108,8 +106,8 @@ export default function Signup() {
                     className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <input
-                    id="date_of_birth"
-                    name="date_of_birth"
+                    id="age"
+                    name="age"
                     type="number"
                     autoComplete="age"
                     required
@@ -164,7 +162,6 @@ export default function Signup() {
                 </button>
               </div>
             </form>
-          </form>
         )}
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?

@@ -6,42 +6,42 @@ describe('test 1', ()=>{
     var ID = generateID()
     var email = 'QATEST' + ID +'@email.com'
     var pass = 'qaTest1!'
-    it('visits the site', () => {
+    before('visits the site', ()=>{
         cy.visit('/').wait(1000)
+    })
+    it('visits the site', () => {
         cy.url().should('contain','http://tww-website.s3-website-us-east-1.amazonaws.com/')
     })
     it('Verifies the ability to navigate to log in', () =>{
+        cy.LogInButton().eq(0).should('exist')
         cy.LogInButton().eq(0).click()
         cy.url().should('contain','http://tww-website.s3-website-us-east-1.amazonaws.com/login/')
     })
     it("Verifies the ability to navigate to signup and verifies all fields are present" , () =>{
         cy.SignUpLink().click()
         cy.url().should('contain','http://tww-website.s3-website-us-east-1.amazonaws.com/signup/')
-        cy.get('#first_name').should('exist')
-        cy.get('#last_name').should('exist')
+        cy.get('#firstName').should('exist')
+        cy.get('#lastName').should('exist')
         cy.get('#state').should('exist')
-        cy.get('#date_of_birth').should('exist')
+        cy.get('#age').should('exist')
         cy.get('#email').should('exist')
         cy.get('#password').should('exist')
         cy.get('#passwordconfirmation').should('exist')
     })
     it('Signs up for an account',()=>{
-        cy.get('#first_name').type('QA')
-        cy.get('#last_name').type('TEST')
+        cy.get('#firstName').type('QA')
+        cy.get('#lastName').type('TEST')
         cy.get('#state').type('CT')
-        cy.get('#date_of_birth').type('20')
+        cy.get('#age').type('20')
         cy.get('#email').type(email)
         cy.get('#password').type(pass)
         cy.get('#passwordconfirmation').type(pass)
-        cy.SignUpButton().click().wait(3000)
+        cy.SignUpButton().click().wait(5000)
     })
-    it('Signs in with previously created email and password', ()=>{
+    it('Signs in with previously created email and password, land on search page', ()=>{
         cy.get('#email').type(email)
         cy.get('#password').type(pass)
         cy.SignInButton().click().wait(3000)
-    })
-    it('Verifies Search Button goes to Search Page', () =>{
-        cy.GoToSearchButton().click()
         cy.url().should('contain','/search')
     })
     it('Verifies Ability to navigate to Home', ()=>{
@@ -60,6 +60,15 @@ describe('test 1', ()=>{
         cy.selectOption('Civic').click()
         cy.SelectYearDropdown().should('be.enabled')
         cy.SelectYearDropdown().click()
+        cy.selectOption('2000').click()
+        cy.SubmitButton().click({force:true})
+    })
+    it('verifies that the page is populated with recall information, safety rating, and premium calculation.', ()=>{
+        cy.xpath("//div[contains(text(),'Recall Information:')]").should('exist')
+        cy.contains('2000').should('exist')
+        cy.contains('Honda').should('exist')
+        cy.contains('Civic').should('exist')
+        cy.contains('Premium').should('exist')
     })
     
 })

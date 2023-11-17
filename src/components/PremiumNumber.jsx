@@ -72,8 +72,8 @@ const PremiumNumber = ({ make, model, year }) => {
                 </div>
             ) : premium !== null ? (
                 <div className="flex justify-center items-center">
-                    <p className="text-2xl font-bold">${premium}</p>
-                    <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon='edit' />
+                    <p className="text-2xl font-bold">Estimated Annual Premium: <span className=" text-green-800">${premium}</span></p>
+                    {/* <Modal title='Edit Premium' desc='Override Base Permium Value' field_type='number' field={premium} openicon='edit' /> */}
                 </div>
             ) : (
                 <Loading text="Loading..." />
