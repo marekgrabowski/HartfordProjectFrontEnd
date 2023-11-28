@@ -9,6 +9,8 @@ const Navbar = () => {
   } catch (error) {
     // console.error("Error accessing localStorage:", error.message);
   }
+  document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; HttpOnly";
+  
 
   const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
 
@@ -40,6 +42,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     // Remove the session token from local storage when signing out
     localStorage.removeItem("sessiontoken");
+    document.cookie = "sessionToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
     window.location.href = '/';
   };
 
