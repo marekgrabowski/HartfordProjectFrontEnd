@@ -8,9 +8,7 @@ const Navbar = () => {
     sessionToken = localStorage.getItem("sessiontoken");
   } catch (error) {
     // console.error("Error accessing localStorage:", error.message);
-  }
-  document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; HttpOnly";
-  
+  }  
 
   const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
 
