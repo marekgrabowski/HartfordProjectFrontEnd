@@ -12,6 +12,31 @@ const Navbar = () => {
 
   const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
 
+  const handleNavigation = async (path) => {
+    if (!sessionToken) {
+      window.location.href = path;
+      return;
+    }
+
+    try {
+      const response = await fetch(path, {
+        method: 'GET',
+        headers: {
+          'Authorization': `${sessionToken}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        window.location.href = path;
+      } else {
+        // Handle errors or redirection based on response
+        console.error('Navigation error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
   const handleSignOut = () => {
     // Remove the session token from local storage when signing out
     localStorage.removeItem("sessiontoken");
@@ -22,13 +47,10 @@ const Navbar = () => {
     <nav className="hidden sm:block">
       <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1">
         {navigationItems.map((navItem) => (
-          <li key={navItem.path}>
-            <a
-              href={navItem.path}
-              className="relative font-medium text-white ::before:absolute ::before:-bottom-1.5 ::before:h-0.5 ::before:w-full ::before:scale-x-0 ::before:bg-sky-200 ::before:transition hover::before:scale-x-100"
-            >
+          <li key={navItem.path} onClick={() => handleNavigation(navItem.path)}>
+            <span className="relative font-medium text-white cursor-pointer ::before:absolute ::before:-bottom-1.5 ::before:h-0.5 ::before:w-full ::before:scale-x-0 ::before:bg-sky-200 ::before:transition hover::before:scale-x-100">
               {navItem.component}
-            </a>
+            </span>
           </li>
         ))}
         {sessionToken ? (
