@@ -8,60 +8,48 @@ const PremiumNumber = ({ make, model, year }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            let sessionToken;
+        const fetchPremium = async () => {
             try {
-                sessionToken = localStorage.getItem("sessiontoken");
+                const sessionToken = localStorage.getItem("sessiontoken");
                 if (!sessionToken) {
                     throw new Error("No session token found");
                 }
-            } catch (localStorageError) {
-                setError(localStorageError.message);
-                return; // Exit the function if localStorage is not accessible
-            }
 
-            const headers = {
-                Authorization: sessionToken,
-                "Content-Type": "application/json",
-            };
+                const requestOptions = {
+                    method: "GET",
+                    headers: {
+                        Authorization: sessionToken,
+                        "Content-Type": "application/json",
+                    },
+                };
+                const requestURL = `https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/premium?make=${make}&model=${model}&modelyear=${year}`;
 
-            const requestOptions = {
-                method: "GET",
-                headers: headers,
-            };
-            const request = `?make=${make}&model=${model}&modelyear=${year}`;
-
-            try {
-                const response = await fetch(
-                    `https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/premium${request}`,
-                    requestOptions
-                );
-                console.log(response)
-                console.log(response.body)
+                const response = await fetch(requestURL, requestOptions);
 
                 if (!response.ok) {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                    if (response.status === 401) {
+                        throw new Error("Unauthorized, please login again");
+                    } else if (response.status === 500) {
+                        throw new Error("Internal server error");
+                    } else {
+                        // Handle other statuses or a default case
+                        throw new Error(`Error: ${response.status}`);
+                    }
                 }
 
                 const data = await response.json();
-
-                if (data && data.body.premium !== undefined) {
-                    if(data.body.premium != null){
-                        setPremium(data.body.premium);
-                    }
-                    else{
-                        throw new Error(`Premium Returned Null`)
-                    }
+                if (data && data.body && data.body.premium != null) {
+                    setPremium(data.body.premium);
                 } else {
-                    throw new Error(JSON.stringify(data));
-
+                    console.log(data);
+                    throw new Error(data);
                 }
             } catch (fetchError) {
                 setError(fetchError.message);
             }
         };
 
-        fetchData();
+        fetchPremium();
     }, [make, model, year]);
 
     return (
@@ -77,7 +65,6 @@ const PremiumNumber = ({ make, model, year }) => {
                 </div>
             ) : (
                 <Loading text="Loading..." />
-
             )}
         </div>
     );

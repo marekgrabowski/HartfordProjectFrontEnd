@@ -6,55 +6,44 @@ const RiskFactor = ({ make, model, year }) => {
     const [riskFactor, setRiskFactor] = useState(null);
     const [riskLevel, setRiskLevel] = useState('');
     const [dotPosition, setDotPosition] = useState('0%');
-
+    const [error, setError] = useState(null);
+    
     useEffect(() => {
         const fetchRiskFactor = async () => {
-            let sessionToken;
             try {
-                sessionToken = localStorage.getItem("sessiontoken");
+                const sessionToken = localStorage.getItem("sessiontoken");
                 if (!sessionToken) {
                     throw new Error("No session token found");
                 }
-            } catch (localStorageError) {
-                setError(localStorageError.message);
-                return; // Exit the function if localStorage is not accessible
-            }
 
-            const headers = {
-                Authorization: sessionToken,
-                "Content-Type": "application/json",
-            };
-
-            const requestOptions = {
-                method: "GET",
-                headers: headers,
-            };
-            const request = `?make=${make}&model=${model}&modelyear=${year}`;
-            try {
-                const response = await fetch('https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/risk-factor/'+ request);
+                const requestOptions = {
+                    method: "GET",
+                    headers: {
+                        Authorization: sessionToken,
+                        "Content-Type": "application/json",
+                    },
+                };
+                const requestURL = `https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/vehicles/risk-factor/?make=${make}&model=${model}&modelyear=${year}`;
+                const response = await fetch(requestURL, requestOptions);
                 const data = await response.json();
-                setRiskFactor(data.body.risk_factor);
-                updateSafetyBar(data.body.risk_factor);
-            } catch (error) {
-                console.error('Error fetching risk factor:', error);
+
+                if (response.ok && data.body && data.body.risk_factor !== undefined) {
+                    setRiskFactor(data.body.risk_factor);
+                    updateSafetyBar(data.body.risk_factor);
+                } else {
+                    throw new Error("Error fetching risk factor data");
+                }
+            } catch (fetchError) {
+                console.error('Error fetching risk factor:', fetchError);
+                setError(fetchError.message);
             }
         };
         fetchRiskFactor();
-    }, []);
+    }, [make, model, year]);
 
     const updateSafetyBar = (factor) => {
-        let level;
-        let position;
-
-        position = `${factor * 10}%`;
-
-        if (factor <= 3) {
-            level = 'Low';
-        } else if (factor <= 7) {
-            level = 'Medium';
-        } else {
-            level = 'High';
-        }
+        const position = `${factor * 10}%`;
+        const level = factor <= 3 ? 'Low' : factor <= 7 ? 'Medium' : 'High';
 
         setRiskLevel(level);
         setDotPosition(`calc(${position} - 10px)`); 
@@ -62,7 +51,11 @@ const RiskFactor = ({ make, model, year }) => {
 
     return (
         <div className=" items-center w-64 text-center flex">
-        {riskFactor !== null ? (
+        {error ? (
+                <div className="flex justify-center items-center">
+                    <p className="text-xl font-bold text-red-500">Error: {error}</p>
+                </div>
+            ) : riskFactor !== null ? (
             <>
                 <div className="rounded-lg" style={{ position: 'relative', width: '100%', height: '30px', background: 'linear-gradient(to right, green, yellow, red)', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}>
                     <div className="" style={{ width: '20px', height: '20px', backgroundColor: 'white', borderRadius: '50%', position: 'absolute', top: '5px', left: dotPosition, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'  }}></div>
