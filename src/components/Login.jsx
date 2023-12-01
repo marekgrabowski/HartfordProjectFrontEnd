@@ -38,8 +38,8 @@ export default function Login() {
         const sessionToken = data.token;
         if (sessionToken) {
           localStorage.setItem('sessiontoken', sessionToken);
-          document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; SameSite=lax";
-          console.log(document.cookie);
+          // document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; SameSite=lax";
+          // console.log(document.cookie);
           window.location.href = "/search";
         } else {
           setIsLoading(false);
