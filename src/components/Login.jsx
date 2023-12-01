@@ -40,7 +40,7 @@ export default function Login() {
           localStorage.setItem('sessiontoken', sessionToken);
           // document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; SameSite=lax";
           // console.log(document.cookie);
-          window.location.href = "/search";
+          window.location.href = "/";
         } else {
           setIsLoading(false);
           setError("Invalid email");
