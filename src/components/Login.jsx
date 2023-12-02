@@ -22,6 +22,7 @@ export default function Login() {
     method: "POST",
     body: JSON.stringify(formData),
     headers: headers,
+    credentials: 'include',
   };
 
   const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ export default function Login() {
         "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login",
         requestOptions
       );
-
+      console.log(response);
       if (response.ok) {
         const data = await response.json();
         const sessionToken = data.token;
