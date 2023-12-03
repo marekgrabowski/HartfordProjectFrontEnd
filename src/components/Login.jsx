@@ -44,11 +44,16 @@ export default function Login() {
         console.log(data);
         if(data.statusCode === 401) {
           setError(data.body.error);
+          setIsLoading(false);
+        } else {
+          const sessionToken = data.token;
+          localStorage.setItem('sessiontoken', sessionToken);
+          window.location.href = "/search";
         }
         // Handle successful login here
       } else {
-        const errorText = await response.text(); // or response.json() if the response is in JSON format
-        setError('Error during login: ' + errorText);
+        setError("An error occurred during login");
+        setIsLoading(false);
       }
 
     } catch (error) {
