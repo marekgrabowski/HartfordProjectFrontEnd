@@ -46,7 +46,7 @@ export default function Login() {
           setError(data.body.error);
           setIsLoading(false);
         } else {
-          const sessionToken = data.token;
+          const sessionToken = data.body.token;
           localStorage.setItem('sessiontoken', sessionToken);
           window.location.href = "/search";
         }
