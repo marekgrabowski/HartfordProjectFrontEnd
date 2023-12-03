@@ -7,7 +7,7 @@ export const navItems = [
     },
 ];
 
-export const navItemsLoggedIn = [
+export const navItemsUser = [
     {
         path: "/",
         component: "Home",
@@ -16,10 +16,24 @@ export const navItemsLoggedIn = [
         path: "/search",
         component: "Search",
     },
-    // {
-    //     path: "/viewall",
-    //     component: "View All Vehicles",
-    // },
+    {
+        path: "/account",
+        component: "My Account",
+    },
+];
+export const navItemsAdmin = [
+    {
+        path: "/",
+        component: "Home",
+    },
+    {
+        path: "/search",
+        component: "Search",
+    },
+     {
+         path: "/admin",
+         component: "Admin",
+    },
     {
         path: "/account",
         component: "My Account",

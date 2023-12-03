@@ -1,4 +1,4 @@
-async function getPermission(route) {
+async function getPermission(sessionToken, route) {
     try {
         const headers = {
             Authorization: sessionToken,
@@ -17,13 +17,13 @@ async function getPermission(route) {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            return data.body.access;
+            return { access: data.body.access, role: data.body.role };
         } else {
-            return false;
+            return { access: false, role: null };
         }
     } catch (e) {
         console.log(e);
-        return false;
+        return { access: false, role: null };
     }
 }
 
