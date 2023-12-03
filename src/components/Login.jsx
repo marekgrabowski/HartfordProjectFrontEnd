@@ -19,36 +19,47 @@ export default function Login() {
     setIsLoading(true);
     setError('');
 
-    var xhr = new XMLHttpRequest();
-    var url = 'https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login';
-
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.withCredentials = true;
-
-    xhr.onreadystatechange = function () {
-      setIsLoading(false);
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          console.log('Login successful');
-          // Handle successful login here
-        } else {
-          setError('Error during login: ' + xhr.statusText);
-        }
-      }
+    const url = 'https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login';
+    const data = {
+      "email": formData.email,
+      "password": formData.password
     };
 
-    var data = JSON.stringify({
-      "username": formData.email,
-      "password": formData.password
-    });
+    try {
+      console.log(data);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin",
+        mode: "cors",
+        body: JSON.stringify(data)
+      });
 
-    xhr.send(data);
+      setIsLoading(false);
+      if (response.ok) {
+        console.log('Login successful');
+        const data = await response.json();
+        console.log(data);
+        if(data.statusCode === 401) {
+          setError(data.body.error);
+        }
+        // Handle successful login here
+      } else {
+        const errorText = await response.text(); // or response.json() if the response is in JSON format
+        setError('Error during login: ' + errorText);
+      }
+
+    } catch (error) {
+      setIsLoading(false);
+      setError('Network error: ' + error.message);
+    }
+
+    
   };
 
-
   return (
-
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img className="mx-auto h-20 w-auto" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/The_Hartford_Financial_Services_Group_logo.svg/1200px-The_Hartford_Financial_Services_Group_logo.svg.png" alt="Hartford Logo" />
@@ -94,4 +105,5 @@ export default function Login() {
       </div>
     </div>
   );
+
 }
