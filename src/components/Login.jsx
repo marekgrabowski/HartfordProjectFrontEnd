@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Loading from './Loading'; // Import your Loading component
 
 export default function Login() {
+import React, { useState } from 'react';
+
+export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,39 +17,38 @@ export default function Login() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  const requestOptions = {
-    method: "POST",
-    body: JSON.stringify(formData),
-    headers: headers,
-    credentials: 'include',
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    try {
-      const response = await fetch(
-        "https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login",
-        requestOptions
-      );
-      console.log(response);
-      if (response.ok) {
-        let cookie = resp.headers.get('set-cookie');
-        console.log('set-cookie header value', cookie);
-      } else {
-        setIsLoading(false);
-        const errorData = await response.json();
-        setError(errorData.error);
-      }
-    } catch (error) {
+    setError('');
+
+    var xhr = new XMLHttpRequest();
+    var url = 'https://fd1vjz5z8c.execute-api.us-east-1.amazonaws.com/api/accounts/login';
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.withCredentials = true;
+
+    xhr.onreadystatechange = function () {
       setIsLoading(false);
-      setError("An error occurred during login.");
-    }
-  }
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log('Login successful');
+          // Handle successful login here
+        } else {
+          setError('Error during login: ' + xhr.statusText);
+        }
+      }
+    };
+
+    var data = JSON.stringify({
+      "username": formData.email,
+      "password": formData.password
+    });
+
+    xhr.send(data);
+  };
+
 
   return (
 
