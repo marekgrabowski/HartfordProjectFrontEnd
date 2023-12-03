@@ -35,17 +35,8 @@ export default function Login() {
       );
       console.log(response);
       if (response.ok) {
-        const data = await response.json();
-        const sessionToken = data.token;
-        if (sessionToken) {
-          localStorage.setItem('sessiontoken', sessionToken);
-          // document.cookie = "sessionToken=" + encodeURIComponent(sessionToken) + "; path=/; secure; SameSite=lax";
-          // console.log(document.cookie);
-          window.location.href = "/";
-        } else {
-          setIsLoading(false);
-          setError("Invalid email");
-        }
+        let cookie = resp.headers.get('set-cookie');
+        console.log('set-cookie header value', cookie);
       } else {
         setIsLoading(false);
         const errorData = await response.json();
