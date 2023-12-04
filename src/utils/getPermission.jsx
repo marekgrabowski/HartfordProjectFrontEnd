@@ -16,7 +16,6 @@ async function getPermission(sessionToken, route) {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             return { access: data.body.access, role: data.body.role };
         } else {
             return { access: false, role: null };

@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ContainerLarge from "../../components/ContainerLarge.astro";
-import SubNav from "../../components/SubNav.astro";
+import UserProfile from "../../components/UserProfile";
 ---
 
 <Layout title="My Account Settings">
@@ -19,36 +19,9 @@ import SubNav from "../../components/SubNav.astro";
 						My Account
 					</h1>
 					<p class="text-center font-medium text-gray-700">
-						View and modify account information
+						View account information
 					</p>
-					<div
-						class="grid grid-cols-3 lg:grid-cols-4 gap-4 p-4 w-full lg:w-1/2 mt-8 mx-auto grid-flow-row items-center"
-					>
-						<p class="col-span-3 lg:col-span-1 lg:text-right">
-							Name:
-						</p>
-						<p
-							class="col-span-3 bg-gray-100 border border-gray-200 p-2 rounded-md"
-						>
-							Test
-						</p>
-						<p class="col-span-3 lg:col-span-1 lg:text-right">
-							Email:
-						</p>
-						<p
-							class="col-span-3 bg-gray-100 border border-gray-200 p-2 rounded-md"
-						>
-							Test
-						</p>
-						<p class="col-span-3 lg:col-span-1 lg:text-right">
-							Role:
-						</p>
-						<p
-							class="col-span-3 bg-gray-100 border border-gray-200 p-2 rounded-md"
-						>
-							Test
-						</p>
-					</div>
+					<UserProfile client:load/>
 					<!-- <form method="POST">
 						<div
 							class="grid grid-cols-3 lg:grid-cols-4 gap-4 p-4 w-full lg:w-1/2 mt-8 mx-auto grid-flow-row items-center"

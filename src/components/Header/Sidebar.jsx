@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { navItems, navItemsLoggedIn } from "../../utils/navigation";
+import { navItems, navItemsUser } from "../../utils/navigation";
 
 const Sidebar = ({ open = false, setOpen }) => {
   let sessionToken;
@@ -12,7 +12,7 @@ const Sidebar = ({ open = false, setOpen }) => {
     // Handle the error, if necessary
   }
 
-  const navigationItems = sessionToken ? navItemsLoggedIn : navItems;
+  const navigationItems = sessionToken ? navItemsUser : navItems;
 
 
   const handleSignOut = () => {
