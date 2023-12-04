@@ -26,7 +26,7 @@ export default function Login() {
     };
 
     try {
-      console.log(data);
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -39,9 +39,8 @@ export default function Login() {
 
       setIsLoading(false);
       if (response.ok) {
-        console.log('Login successful');
         const data = await response.json();
-        console.log(data);
+
         if(data.statusCode === 401) {
           setError(data.body.error);
           setIsLoading(false);
