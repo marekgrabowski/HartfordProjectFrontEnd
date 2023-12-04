@@ -25,7 +25,7 @@ const Header = () => {
         }
       } else {
         try {
-          const { access, role } = await getPermission(sessionToken, window.location.pathname);
+          const { access, role } = await getPermission(sessionToken, path);
           if (role === 'user') {
             setNavigationItems(navItemsUser);
           } else if (role === 'admin') {
