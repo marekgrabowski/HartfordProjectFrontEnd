@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import edit from "../../public/pencil.svg";
+import edit from "../assets/pencil.svg";
 
 const Modal = ({
   title,
