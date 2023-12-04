@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import edit from "../assets/pencil.svg";
 import Loading from './Loading';
 
 const Modal = ({
@@ -11,11 +10,11 @@ const Modal = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [fields, setFields] = useState([]);
-
+  let edit = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM51.31,160,136,75.31,152.69,92,68,176.68ZM48,179.31,76.69,208H48Zm48,25.38L79.31,188,164,103.31,180.69,120Zm96-96L147.31,64l24-24L216,84.68Z"></path></svg>'
   const formatLabel = (label) => {
     return label.split('_')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };
 
   useEffect(() => {
@@ -99,22 +98,22 @@ const Modal = ({
   return (
     <>
       <button onClick={openModal} className="px-4 py-2 text-white rounded">
-        {openicon === "edit" && (
-          <img src="../src/assets/pencil.svg" alt="Edit" />
-        )}
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000fff" viewBox="0 0 256 256"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM51.31,160,136,75.31,152.69,92,68,176.68ZM48,179.31,76.69,208H48Zm48,25.38L79.31,188,164,103.31,180.69,120Zm96-96L147.31,64l24-24L216,84.68Z"></path></svg>
+
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:items-center items-start sm:block sm:p-0">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
+              className="hidden sm:inline-block sm:align-middle align-top sm:h-screen"
               aria-hidden="true"
             >
               &#8203;
             </span>
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -127,8 +126,8 @@ const Modal = ({
                     <p className=" text-sm"> {desc}</p>
                     <div className="mt-2">
                       {fields.map((field, index) => (
-                        <div className="my-2" key={index}>
-                          <label htmlFor={`field-${index}`}>
+                        <div className="flex flex-col sm:flex-row my-2" key={index}>
+                          <label htmlFor={`field-${index}`} className="mb-2 sm:mb-0 sm:mr-2 w-full sm:w-[40%]">
                             {field.label}
                           </label>
                           <input
@@ -139,7 +138,7 @@ const Modal = ({
                             onChange={(e) =>
                               handleInputChange(index, e.target.value)
                             }
-                            className=" ml-2 border-2 border-gray-400 rounded-sm"
+                            className="p-1 border-2 border-gray-300 rounded-lg"
                           />
                         </div>
                       ))}
