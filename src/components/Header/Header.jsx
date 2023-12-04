@@ -19,7 +19,7 @@ const Header = () => {
         path = path.slice(0, -1);
       }
       if (!sessionToken) {
-        const publicPaths = ['/login', '/signup', '/team', '/'];
+        const publicPaths = ['/login', '/signup', '/team', '/',''];
         if (!publicPaths.includes(path)) {
           window.location.href = '/login';
         }
