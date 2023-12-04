@@ -14,10 +14,14 @@ const Header = () => {
     const sessionToken = localStorage.getItem("sessiontoken");
 
     const checkPermissions = async () => {
+      let path = window.location.pathname;
+      if (path.endsWith('/')) {
+        path = path.slice(0, -1);
+      }
       if (!sessionToken) {
         const publicPaths = ['/login', '/signup', '/team', '/'];
-        if (!publicPaths.includes(window.location.pathname)) {
-          console.log("Unauthorized:", window.location.pathname );
+        if (!publicPaths.includes(path)) {
+          window.location.href = '/login';
         }
       } else {
         try {
