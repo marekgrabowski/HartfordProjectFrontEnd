@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { navItems, navItemsUser } from "../../utils/navigation";
+const Sidebar = ({ open, setOpen, navigationItems }) => {
 
-const Sidebar = ({ open = false, setOpen }) => {
-  let sessionToken;
-
-  try {
-    // Attempt to get the session token from localStorage
-    sessionToken = localStorage.getItem("sessiontoken");
-  } catch (error) {
-    console.error("Error accessing localStorage:", error.message);
-    // Handle the error, if necessary
-  }
-
-  const navigationItems = sessionToken ? navItemsUser : navItems;
-
+  const sessionToken = localStorage.getItem("sessiontoken");
 
   const handleSignOut = () => {
     // Remove the session token from local storage when signing out
     localStorage.removeItem("sessiontoken");
     window.location.href = "/";
   };
-  const sidebarClasses = `z-50 fixed inset-y-0 right-0 w-full bg-gray-900 transform transition-transform ease-in-out duration-300 ${
-    open ? "translate-x-0" : "translate-x-full"
-  }`;
+  const sidebarClasses = `z-50 fixed inset-y-0 right-0 w-full bg-gray-900 transform transition-transform ease-in-out duration-300 ${open ? "translate-x-0" : "translate-x-full"
+    }`;
   return (
     <div className={sidebarClasses}>
       <button

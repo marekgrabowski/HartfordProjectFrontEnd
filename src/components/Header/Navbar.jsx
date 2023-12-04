@@ -1,65 +1,9 @@
-import { useEffect, useState } from "react";
-import { navItems, navItemsUser, navItemsAdmin } from "../../utils/navigation";
-import getSessionToken from "../../utils/getSessionToken";
-import getPermission from "../../utils/getPermission"; // Corrected the spelling
-import UnauthorizedModal from "../UnauthorizedModal";
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ navigationItems }) => {
   const [isUnauthorized, setIsUnauthorized] = useState(false);
-  const [navigationItems, setNavigationItems] = useState(navItems);
-  let sessionToken =  localStorage.getItem("sessiontoken")
-  useEffect(() => {
-    const checkPermissions = async () => {
-      if (!sessionToken) {
-        const publicPaths = ['/login', '/signup', '/team', '/'];
-        if (!publicPaths.includes(window.location.pathname)) {
-          window.location.href = '/login';
-        }
-      } else {
-        try {
-          const { access, role }  = await getPermission(sessionToken, window.location.pathname);
-          if (role === 'user') {
-            setNavigationItems(navItemsUser);
-          } else if (role === 'admin') {
-            setNavigationItems(navItemsAdmin);
-          }
-          if (!access) {            
-            setIsUnauthorized(true);
-          }
-        } catch (error) {
-          console.error('Permission check error:', error);
-          setIsUnauthorized(true);
-        }
-      }
-    };
 
-    checkPermissions();
-  }, [sessionToken]);
-
-  const handleNavigation = async (path) => {
-    if (!sessionToken) {
-      window.location.href = path;
-      return;
-    }
-
-    try {
-      const response = await fetch(path, {
-        method: 'GET',
-        headers: {
-          'Authorization': `${sessionToken}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        window.location.href = path;
-      } else {
-        console.error('Navigation error:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  let sessionToken = localStorage.getItem("sessiontoken");
 
   const handleSignOut = () => {
     localStorage.removeItem("sessiontoken");
@@ -69,7 +13,6 @@ const Navbar = () => {
 
   return (
     <>
-      {isUnauthorized && <UnauthorizedModal isOpen={isUnauthorized} />}
       <nav className={`hidden sm:block ${isUnauthorized ? 'hidden' : ''}`}>
         <ul className="flex justify-center align-middle items-center gap-8 px-3 py-1">
           {navigationItems.map((navItem) => (
