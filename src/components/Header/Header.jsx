@@ -17,7 +17,7 @@ const Header = () => {
       if (!sessionToken) {
         const publicPaths = ['/login', '/signup', '/team', '/'];
         if (!publicPaths.includes(window.location.pathname)) {
-          window.location.href = '/login';
+          console.log("Unauthorized:", window.location.pathname );
         }
       } else {
         try {
