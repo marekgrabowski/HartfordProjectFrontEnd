@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Loading from './Loading';
 
 export default function Signup() {
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,6 +31,11 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e) => {
+    // Check if passwords match
+    if (formData.password !== formData.passwordconfirmation) {
+      setError("Your passwords dont match.");
+      return; // Stop the function if passwords don't match
+    }
     e.preventDefault();
     setIsLoading(true); // Set loading state to true while waiting for response
     try {
@@ -62,7 +68,7 @@ export default function Signup() {
           alt="Hartford Logo"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Create an Account!
+          Create an Account.
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -71,98 +77,100 @@ export default function Signup() {
             <Loading />
           </div>
         ) : (
-            <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
-              <div>
-                <label className="text-md font-bold">User Information</label>
-                <div className="grid-cols-2 grid gap-2 my-2">
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    autoComplete="given-name"
-                    placeholder="First Name"
-                    required
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    autoComplete="family-name"
-                    placeholder="Last Name"
-                    required
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                  <input
-                    id="state"
-                    name="state"
-                    type="text"
-                    autoComplete="state"
-                    placeholder="State"
-                    required
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                  <input
-                    id="years_driving"
-                    name="years_driving"
-                    type="number"
-                    autoComplete="years_driving"
-                    required
-                    placeholder="Years driving"
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
+          <form className="space-y-4" method="POST" onSubmit={handleSubmit}>
+            <div>
+              <label className="text-md font-bold">User Information</label>
+              <div className="grid-cols-2 grid gap-2 my-2">
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  placeholder="First Name"
+                  required
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  autoComplete="family-name"
+                  placeholder="Last Name"
+                  required
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <input
+                  id="state"
+                  name="state"
+                  type="text"
+                  autoComplete="state"
+                  placeholder="State"
+                  required
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <input
+                  id="years_driving"
+                  name="years_driving"
+                  type="number"
+                  autoComplete="years_driving"
+                  required
+                  placeholder="Years driving"
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
-              <div>
-                <label className="text-md font-bold">Login Information</label>
-                <div className="grid-cols-1 grid gap-2 my-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Your email"
-                    required
-                    onChange={handleChange}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    placeholder="Password"
-                    required
-                    onChange={handleChange}
-                    minLength="8"
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                  <input
-                    id="passwordconfirmation"
-                    name="passwordconfirmation"
-                    type="password"
-                    placeholder="Confirm Password"
-                    required
-                    onChange={handleChange}
-                    minLength="8"
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
+            </div>
+            <div>
+              <label className="text-md font-bold">Login Information</label>
+              <div className="grid-cols-1 grid gap-2 my-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Your email"
+                  required
+                  onChange={handleChange}
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Password"
+                  required
+                  onChange={handleChange}
+                  minLength="8"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <input
+                  id="passwordconfirmation"
+                  name="passwordconfirmation"
+                  type="password"
+                  placeholder="Confirm Password"
+                  required
+                  onChange={handleChange}
+                  minLength="8"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full mt-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
+            </div>
+            <div className="text-red-500 text-sm mt-2">{error}</div>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full mt-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
         )}
+        
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
           <a

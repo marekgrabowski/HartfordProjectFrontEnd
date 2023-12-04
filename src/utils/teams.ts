@@ -18,7 +18,7 @@ export const team = [
     {
         image: "https://marekgrabowski.net/_astro/profile_photo.dc0b9a6b_Z24pAQE.webp",
         name: "Marek Grabowski",
-        bio: "Marek is an undergraduate Computer Science student at CCSU, anticipating graduation in May 2024. In this project, he made significant contributions to the front end, responsible for designing the site layout and many of its components. He also assisted in implementing various security and authentication features and internal API. Besides his interests in Computer Science, Marek currently works as an AV System Engineer & Programmer.",
+        bio: "Marek is an undergraduate Computer Science student at CCSU, anticipating graduation in May 2024. In this project, he made significant contributions to the front end, responsible for designing the site layout and many of its components. He also assisted in implementing various security and authentication features assisted internal API. Besides his interests in Computer Science, Marek currently works as an AV System Engineer & Programme where problem solving is key. He hopes to further his knowledge and apply his various Software Development experience.",
         website: "https://marekgrabowski.net/",
         github: "https://github.com/marekgrabowski",
         linkedin: "https://www.linkedin.com/in/marekgrabski/",
