@@ -9,7 +9,7 @@ Cypress.Commands.add("HomeNav", ()=>{
     cy.xpath("//nav/descendant::a[.='Home']")
 })
 Cypress.Commands.add("SearchNav", ()=>{
-    cy.xpath("//nav/descendant::a[.='Search']")
+    cy.xpath("//nav/descendant::span[.='Search']")
 })
 Cypress.Commands.add("SelectMakeDropdown", ()=>{
     cy.xpath("//div[.='Select Make']/following-sibling::div/child::input")
