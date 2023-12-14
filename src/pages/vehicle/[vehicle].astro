@@ -34,7 +34,7 @@ const { make, model, year } = Astro.props;
         <h1 class="text-3xl font-medium p-4">
           {year}&nbsp;{make}&nbsp;{model}
         </h1>
-        <div class="flex gap-2">
+        <div class="flex flex-col md:flex-row gap-2 items-center ">
           <div class="flex gap-2 items-center">
             <div
               class="w-10 h-10 rounded-full bg-red-500 flex justify-center items-center"
@@ -49,7 +49,7 @@ const { make, model, year } = Astro.props;
         </div>
       </div>
       <!-- Vehicle Premium -->
-      <div class="mt-5">
+      <div class="mt-5 text-center ">
         <PremiumNumber make={make} model={model} year={year} client:load />
       </div>
       <div class="flex flex-col sm:flex-row gap-20 p-8">
